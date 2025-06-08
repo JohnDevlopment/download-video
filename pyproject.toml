@@ -13,6 +13,9 @@ dependencies = [
 [tool.poetry.scripts]
 download-video = "download_video.app:app"
 
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "^4.4.3"
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
