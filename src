@@ -1,19 +1,24 @@
+# -*- mode: sh; -*-
+
 if [ -z "$VIRTUAL_ENV_PROMPT" ]; then
     source .venv/bin/activate
 fi
+
 alias reset_prompt='PS1="$OLD_PS1"'
 OLD_PS1="$PS1"
 PS1="($VIRTUAL_ENV_PROMPT) "'\[\e]0;\u@\h:\W\a\]\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\W\[\033[00m\]\$ '
 
-
+clear
 
 alias emacs="execnohup emacs; unalias emacs; history -s execnohup emacs"
-alias git-gui="execnohup -sleep 2 -n 2 git gui; unalias git-gui; history -s execnohup -sleep 2 -n 2 git gui"
 alias rmcache='find -type d -iname __pycache__ -execdir rm -rfv \{} \; 2> /dev/null'
-
 
 source ~/src/.fzf-history
 source ~/src/.gitprojectrc --python
+source ~/src/.fzf-pytest download_video
+
+alias cov="xdg-open htmlcov/index.html; unalias cov; history -s xdg-open htmlcov/index.html"
+alias pytest-coverage="pytest --cov && coverage html; unalias pytest-coverage; history -s pytest --cov \&\& coverage html"
 
 ## usage: _test [MOD] [ARG ...]
 function _test {
@@ -31,6 +36,7 @@ function _test {
 
     python -m $mod "$@"
 }
+
 function create-stub {
     local modules module
     modules=$(python ~/src/.python-module-tree.py download_video download_video || return 1)
@@ -48,12 +54,15 @@ history -r
 
 ## usage: list-commands
 function list-commands {
-	cat <<EOF
+    cat <<EOF
 Commands:
+  * _test
+  * cov (once, modifies history)
+  * create-stub
   * emacs (once, modifies history)
-  * git-gui (once, modifies history)
-  * rmcache 
-  * _test 
+  * pytest-coverage (once, modifies history)
+  * reset_prompt
+  * rmcache
 EOF
 }
 
