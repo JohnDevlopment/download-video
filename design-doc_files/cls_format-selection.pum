@@ -1,0 +1,21 @@
+@startuml
+package site_processors {
+    protocol formats.FormatSelectionStrategy {
+        +Format run(FormatSelector selector, SiteInfo info)
+    }
+
+    package site_XXX {
+        class AudioOnlyStrategy
+        class VideoOnlyNoHeightStrategy
+        class VideoOnlyStrategy
+        class AudioVideoNoHeightStrategy
+        class AudioVideoStrategy
+    }
+
+    FormatSelectionStrategy <|.. site_processors.site_XXX.AudioOnlyStrategy
+    FormatSelectionStrategy <|.. site_processors.site_XXX.VideoOnlyNoHeightStrategy
+    FormatSelectionStrategy <|.. site_processors.site_XXX.VideoOnlyStrategy
+    FormatSelectionStrategy <|.. site_processors.site_XXX.AudioVideoNoHeightStrategy
+    FormatSelectionStrategy <|.. site_processors.site_XXX.AudioVideoStrategy
+}
+@enduml

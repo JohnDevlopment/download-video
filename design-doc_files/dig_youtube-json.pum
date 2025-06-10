@@ -1,0 +1,25 @@
+@startjson
+{
+    "title": "Example Title",
+	"id": "xxxxxxxxxxx",
+	"formats": [
+		{
+			"abr": 0,
+			"acodec": "none",
+			"asr": null,
+			"audio_ext": "none",
+			"ext": "webm",
+			"filesize": 848641,
+			"filesize_approx": 154897,
+			"format_id": "243",
+			"height": 486,
+			"tbr": 41894.0,
+			"url": "...",
+			"vbr": 120.163,
+			"video_ext": "webm",
+			"width": 360
+		}
+	],
+	"age_limit": 0
+}
+@endjson

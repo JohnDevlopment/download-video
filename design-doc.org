@@ -1,0 +1,265 @@
+#+title:Download Video
+#+subtitle: Easily download videos from Youtube and other sites.
+#+latex_class: report
+#+author: John Russell
+#+startup: content
+#+todo: TODO(t) FIXME(f) | FIXED(f) DONE(d!)
+
+#+latex_header: \usepackage{adjustbox}
+
+#+html_head: <link rel="stylesheet" href="design-doc.css">
+
+#+macro: name Download Video
+#+macro: bin jdv
+#+macro: secref [[*$1][$1]]
+#+macro: actdiag (eval (format "#+caption: %s\n[[file:design-doc_files/act_%s.png]]" $1 $2))
+#+macro: clsdiag (eval (format "#+caption: %s\n[[file:design-doc_files/cls_%s.png]]" $1 $2))
+#+macro: digdiag (eval (format "#+caption: %s\n[[file:design-doc_files/dig_%s.png]]" $1 $2))
+#+macro: jumpfig Figure [[$1]]
+#+macro: nstrats 5
+
+#+begin_abstract
+{{{name}}} as a project defines {{{bin}}} as a commandline application for
+downloading videos and OSTs.
+#+end_abstract
+
+* Terminology
+
+- Video :: In this document, refers to any video or audio file, including videos
+  with or without audio.
+- Site processor :: A singleton class that contains methods for handling
+  site-specific implementations of the ~SiteProcessor~ interface.
+
+* User Interface
+
+{{{bin}}} is comprised of three subcommands:
+- ~video~ for downloading videos
+- ~ost~ for downloading OSTs
+- ~config~ for setting/getting config variables
+
+** DONE ~video~
+   - State "DONE"       from "TODO"       [2025-07-10 Thu 16:59]
+   - State "DONE"       from "TODO"       [2025-06-21 Sat 21:34]
+   :LOGBOOK:
+   CLOCK: [2025-07-10 Thu 16:56]--[2025-07-10 Thu 16:59] =>  0:03
+   CLOCK: [2025-06-21 Sat 21:32]--[2025-06-21 Sat 21:34] =>  0:02
+   CLOCK: [2025-06-18 Wed 19:40]--[2025-06-18 Wed 19:43] =>  0:03
+   :END:
+
+Download videos from the internet using several criteria to filter formats.
+This comprises the "main" function of the application.
+
+#+begin_example
+  Usage:
+    jdv video [-hny] URL
+    jdv video [-hny] [--height HEIGHT] [--video-only] URL
+    jdv video [-hny] [--audio-only] URL
+    jdv video [-hny] -r FILE
+#+end_example
+
+The lone positional argument is treated as a string URL by default; if *-r* is
+passed, it's treated as a path.
+
+*Options*
+
+| Short | Long                | Note                                                   |
+|-------+---------------------+--------------------------------------------------------|
+|       | <15>                | <30>                                                   |
+| ~-n~  | ~--dry-run~         | Prints only what will happen                           |
+| ~-r~  | ~--rename~          | Renames the file instead of downloading from /URL/     |
+|       | ~--height~ /NUMBER/ | Selects the best format according to the video height. |
+|       | ~--audio-only~      | Selects only audio formats                             |
+|       | ~--video-only~      | Selects only video formats                             |
+| ~-y~  | ~--yes~             | Automatically says yes to every prompt                 |
+
+** TODO ~ost~
+   :LOGBOOK:
+   CLOCK: [2025-07-10 Thu 16:59]--[2025-07-10 Thu 17:01] =>  0:02
+   :END:
+
+Download audio OSTs from the internet, optionally setting metadata for the
+downloaded files.
+
+*** DONE Options
+    - State "DONE"       from "TODO"       [2025-07-10 Thu 17:22]
+    :LOGBOOK:
+    CLOCK: [2025-07-10 Thu 17:14]--[2025-07-10 Thu 17:22] =>  0:08
+    CLOCK: [2025-07-10 Thu 17:01]--[2025-07-10 Thu 17:07] =>  0:06
+    :END:
+
+#+begin_example
+  Usage:
+    jdv ost [OPTIONS] URL [FILE]
+#+end_example
+
+| Short | Long                | Note                                                 |
+|-------+---------------------+------------------------------------------------------|
+|       | <15>                | <30>                                                 |
+| ~-n~  | ~--dry-run~         | Prints only what will happen                         |
+| ~-t~  | ~--title~ /TITLE/   | Embeds /TITLE/ as the title metadata into the file   |
+| ~-a~  | ~--artist~ /ARTIST/ | Embeds /ARTIST/ as the artist metadata into the file |
+| ~-A~  | ~--album~ /ALBUM/   | Embeds /ALBUM/ as the album metadata into the file   |
+| ~-g~  | ~--genre~ /GENRE/   | Embeds /GENRE/ as the genre metadata into the file   |
+
+* Technical Specification
+
+** Dependencies
+
+{{{name}}} uses:
+- [[https://pypi.org/project/typer][typer]] :: CLI
+- [[https://pypi.org/project/yt-dlp][yt-dlp]] :: Backend
+- [[https://pypi.org/project/pydantic][pydantic]] :: Validation of data, primarily the info dictionary
+
+Standard library:
+- [[https://docs.python.org/3.12/library/urllib.parse.html][~urllib.parse~]] :: It conains [[https://docs.python.org/3.12/library/urllib.parse.html#urllib.parse.urlparse][urlparse]], which we use to normalize URLs
+
+** DONE Overview
+   - State "DONE"       from "TODO"       [2025-06-25 Wed 10:08]
+   - State "DONE"       from "TODO"       [2025-06-21 Sat 21:31]
+   :LOGBOOK:
+   CLOCK: [2025-06-17 Tue 10:38]--[2025-06-17 Tue 10:41] =>  0:03
+   CLOCK: [2025-06-17 Tue 10:31]--[2025-06-17 Tue 10:33] =>  0:02
+   :END:
+
+{{{actdiag(Overview,overview)}}}
+
+*** DONE Getting Site Processor
+    - State "DONE"       from "TODO"       [2025-06-21 Sat 22:42]
+    :LOGBOOK:
+    CLOCK: [2025-06-21 Sat 22:33]--[2025-06-21 Sat 22:42] =>  0:09
+    CLOCK: [2025-06-21 Sat 21:35]--[2025-06-21 Sat 22:23] =>  0:48
+    CLOCK: [2025-06-18 Wed 15:36]--[2025-06-18 Wed 15:50] =>  0:14
+    CLOCK: [2025-06-17 Tue 10:47]--[2025-06-17 Tue 10:58] =>  0:11
+    :END:
+
+The URL is matched with a list of preregistered singletons known as /site/
+/processors/.  That is to say, certain Python modules are treated as singletons.
+When one of them matches with the URL, it is used for the remainder of the
+process.
+
+#+label: fig:sitesig
+{{{clsdiag(Site Processor,site-singleton)}}}
+
+*** DONE URL Normalization
+    - State "DONE"       from "TODO"       [2025-06-21 Sat 22:48]
+    :LOGBOOK:
+    CLOCK: [2025-06-21 Sat 22:46]--[2025-06-21 Sat 22:48] =>  0:02
+    CLOCK: [2025-06-21 Sat 16:20]--[2025-06-21 Sat 16:20] =>  0:00
+    CLOCK: [2025-06-21 Sat 16:17]--[2025-06-21 Sat 16:19] =>  0:02
+    CLOCK: [2025-06-17 Tue 11:10]--[2025-06-17 Tue 11:12] =>  0:02
+    CLOCK: [2025-06-17 Tue 11:07]--[2025-06-17 Tue 11:07] =>  0:00
+    CLOCK: [2025-06-17 Tue 10:58]--[2025-06-17 Tue 11:05] =>  0:07
+    :END:
+
+The site processor has a function for normalizing URLs, which is done before
+extracting the info dictionary.  The exact method will change depending on the
+site processor (see {{{secref(Supported Sites)}}}).
+
+*** DONE Extracting Info Dictionary
+    - State "DONE"       from "TODO"       [2025-06-21 Sat 23:09]
+    :LOGBOOK:
+    CLOCK: [2025-06-21 Sat 22:49]--[2025-06-21 Sat 23:09] =>  0:20
+    :END:
+
+Refer to Figure {{{jumpfig(fig:sitesig)}}}.
+
+The abstract method ~extract_info~ takes a URL and returns a ~SiteInfo~, a
+dictionary-like object with a ~get_url~ method.  It is intentially opaque, so
+only the site processor itself knows what to do with it.  However, some parts of
+the dictionary are made visible via getter methods.
+
+*** DONE Selecting A Format
+    - State "DONE"       from "TODO"       [2025-06-25 Wed 10:08]
+    :LOGBOOK:
+    CLOCK: [2025-06-25 Wed 09:57]--[2025-06-25 Wed 10:08] =>  0:11
+    CLOCK: [2025-06-21 Sat 23:10]--[2025-06-21 Sat 23:19] =>  0:09
+    CLOCK: [2025-06-21 Sat 01:05]--[2025-06-21 Sat 01:08] =>  0:03
+    CLOCK: [2025-06-18 Wed 21:40]--[2025-06-18 Wed 21:45] =>  0:05
+    CLOCK: [2025-06-18 Wed 19:44]--[2025-06-18 Wed 19:57] =>  0:13
+    CLOCK: [2025-06-18 Wed 19:24]--[2025-06-18 Wed 19:40] =>  0:16
+    :END:
+
+The abstract method ~select_format~ selects a suitable format based on the
+criteria provided by the user.  This criteria comes in the form of a
+~FormatSelector~ object.
+
+A format is chosen from the dictionary via the strategy pattern.  There are
+{{{nstrats}}} strategies in total.
+
+{{{clsdiag(Format Selections,format-selection)}}}
+
+** Configuration
+
+A configuration file controls the exact behavior of {{{name}}}.  There is a
+global section followed sections for each supported site.  Their respective
+values are explained under {{{secref(Supported Sites)}}}.
+
+The ~config~ subpackage handles the entire configuration framework.  In the
+standard config directory, a Toml file is used called ~config.toml~.
+
+** Supported Sites
+
+*** TODO Youtube
+    :LOGBOOK:
+    CLOCK: [2025-06-18 Wed 18:51]--[2025-06-18 Wed 18:52] =>  0:01
+    CLOCK: [2025-06-18 Wed 17:36]--[2025-06-18 Wed 18:04] =>  0:28
+    CLOCK: [2025-06-18 Wed 16:04]--[2025-06-18 Wed 16:16] =>  0:12
+    CLOCK: [2025-06-18 Wed 02:08]--[2025-06-18 Wed 02:08] =>  0:00
+    CLOCK: [2025-06-18 Wed 01:32]--[2025-06-18 Wed 01:33] =>  0:01
+    CLOCK: [2025-06-17 Tue 22:58]--[2025-06-17 Tue 23:01] =>  0:03
+    CLOCK: [2025-06-17 Tue 22:48]--[2025-06-17 Tue 22:54] =>  0:06
+    CLOCK: [2025-06-17 Tue 22:44]--[2025-06-17 Tue 22:46] =>  0:02
+    CLOCK: [2025-06-17 Tue 11:12]--[2025-06-17 Tue 11:20] =>  0:08
+    CLOCK: [2025-06-17 Tue 11:10]--[2025-06-17 Tue 11:10] =>  0:00
+    CLOCK: [2025-06-17 Tue 11:06]--[2025-06-17 Tue 11:07] =>  0:01
+    CLOCK: [2025-06-17 Tue 10:42]--[2025-06-17 Tue 10:47] =>  0:05
+    :END:
+
+Right now, Youtube is the only site supported by {{{name}}}.  This will likely
+change in the future when this project has taken shape and is out of alpha.
+
+The site processor for Youtube matches URLs with the following formats:
+- https​://www.youtube.com/watch?v=XXXXXXXXXXX
+- youtu.be/XXXXXXXXXXX
+- yt:XXXXXXXXXXX
+
+This site processor normalizes the URL so that it always has the first form.
+The info dictionary returned by Youtube has this structure:
+
+{{{digdiag(Info Dictionary - Youtube,youtube-json)}}}
+
+**** DONE URL Normalization
+     - State "DONE"       from "TODO"       [2025-06-25 Wed 10:10]
+     :LOGBOOK:
+     CLOCK: [2025-06-25 Wed 10:10]--[2025-06-25 Wed 10:10] =>  0:00
+     CLOCK: [2025-06-21 Sat 16:19]--[2025-06-21 Sat 16:20] =>  0:01
+     :END:
+
+URL normalization is done by matching a URL with a regular expression and
+capturing the video ID, then returning a "proper" URL with said video ID.
+
+**** DONE Format Selection
+     - State "DONE"       from "TODO"       [2025-06-25 Wed 10:15]
+     :LOGBOOK:
+     CLOCK: [2025-06-25 Wed 10:11]--[2025-06-25 Wed 10:15] =>  0:04
+     CLOCK: [2025-06-21 Sat 16:51]--[2025-06-21 Sat 16:51] =>  0:00
+     CLOCK: [2025-06-21 Sat 16:20]--[2025-06-21 Sat 16:45] =>  0:25
+     CLOCK: [2025-06-21 Sat 16:14]--[2025-06-21 Sat 16:17] =>  0:03
+     CLOCK: [2025-06-21 Sat 01:08]--[2025-06-21 Sat 01:13] =>  0:05
+     CLOCK: [2025-06-20 Fri 21:49]--[2025-06-20 Fri 22:24] =>  0:35
+     CLOCK: [2025-06-20 Fri 21:36]--[2025-06-20 Fri 21:45] =>  0:09
+     CLOCK: [2025-06-20 Fri 21:30]--[2025-06-20 Fri 21:32] =>  0:02
+     CLOCK: [2025-06-20 Fri 20:44]--[2025-06-20 Fri 20:45] =>  0:01
+     CLOCK: [2025-06-18 Wed 21:45]--[2025-06-18 Wed 21:48] =>  0:03
+     CLOCK: [2025-06-18 Wed 19:22]--[2025-06-18 Wed 19:24] =>  0:02
+     :END:
+
+Selecting a format is done by trying to get the best (highest quality) video
+which satisfies the criteria outlined in ~FormatSelector~ (see {{{jumpfig(fig:sitesig)}}}).
+
+{{{clsdiag(Format Selections,format-selection)}}}
+
+A series of strategies are used to filter the list formats according to the
+criteria given.  The name of each strategy class pretty much says what the
+strategy will be.  Then the highest quality format is chosen.  The barometer for
+a format's quality is its total bitrate, denoted in the ~tbr~ element.

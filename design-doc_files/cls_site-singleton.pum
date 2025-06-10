@@ -1,0 +1,37 @@
+@startuml
+package site_processors {
+    class init << module >> {
+        tuple<SiteProcessor, string> match_url(string url)
+        void register_site_processors()
+    }
+
+    package sites {
+        interface SiteProcessor << singleton >> {
+            Option<string> normalize_url(string url)
+            SiteInfo extract_info(string url)
+            Format select_format(SiteInfo info, FormatSelector selector)
+            void download(string url, Format format)
+            void rename(Path file)
+        }
+        SiteProcessor -() Format
+
+        abstract class SiteInfo {
+            {abstract} string get_url()
+        }
+        SiteInfo -* SiteProcessor
+    }
+}
+
+enum FormatType {
+    AUDIO_ONLY
+    VIDEO_ONLY
+    AUDIO_VIDEO
+}
+
+struct FormatSelector {
+    Option<int> height
+    FormatType type
+}
+FormatType -* FormatSelector
+site_processors.sites.SiteProcessor o-- FormatSelector : used by
+@enduml

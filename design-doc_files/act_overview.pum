@@ -1,0 +1,12 @@
+@startuml
+|Main app|
+start
+:find site processor for URL;
+|Site singleton|
+:extract info dictionary;
+:select best format by user criteria;
+:download video to file; <<continuous>>
+:rename the output file;
+|Main app|
+stop
+@enduml
