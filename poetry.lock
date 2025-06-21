@@ -989,6 +989,23 @@ url = "http://localhost:5014/john/dev/+simple"
 reference = "dev"
 
 [[package]]
+name = "jmespath"
+version = "1.0.1"
+description = "JSON Matching Expressions"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "jmespath-1.0.1-py3-none-any.whl", hash = "sha256:02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980"},
+    {file = "jmespath-1.0.1.tar.gz", hash = "sha256:90261b206d6defd58fdd5e85f478bf633a2901798906be2ad389150c5c60edbe"},
+]
+
+[package.source]
+type = "legacy"
+url = "http://localhost:5014/john/dev/+simple"
+reference = "dev"
+
+[[package]]
 name = "json5"
 version = "0.12.0"
 description = "A Python implementation of the JSON5 data format."
@@ -3264,4 +3281,4 @@ reference = "dev"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "fe25cf2abe6143932c84ad8d12acc4360476139f507d5d19a059a542fc775833"
+content-hash = "f51914eafd0a9c6bb2890e156cf9557e5826152028b842c7ee130090f88a417c"
