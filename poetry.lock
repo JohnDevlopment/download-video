@@ -2576,6 +2576,23 @@ url = "http://localhost:5014/john/dev/+simple"
 reference = "dev"
 
 [[package]]
+name = "result"
+version = "0.17.0"
+description = "A Rust-like result type for Python"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "result-0.17.0-py3-none-any.whl", hash = "sha256:49fd668b4951ad15800b8ccefd98b6b94effc789607e19c65064b775570933e8"},
+    {file = "result-0.17.0.tar.gz", hash = "sha256:b73da420c0cb1a3bf741dbd41ff96dedafaad6a1b3ef437a9e33e380bb0d91cf"},
+]
+
+[package.source]
+type = "legacy"
+url = "http://localhost:5014/john/dev/+simple"
+reference = "dev"
+
+[[package]]
 name = "rfc3339-validator"
 version = "0.1.4"
 description = "A pure python RFC3339 validator"
@@ -3281,4 +3298,4 @@ reference = "dev"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "f51914eafd0a9c6bb2890e156cf9557e5826152028b842c7ee130090f88a417c"
+content-hash = "7023f13123c093d589b6984e491d5c76b30df28356fecfef3ea3c9d72659de6a"
