@@ -19,6 +19,15 @@ source ~/src/.fzf-pytest download_video
 
 alias cov="xdg-open htmlcov/index.html; unalias cov; history -s xdg-open htmlcov/index.html"
 alias pytest-coverage="pytest --cov && coverage html; unalias pytest-coverage; history -s pytest --cov \&\& coverage html"
+alias ddoc-html="librewolf design-doc.html; unalias ddoc-html; history -s librewolf design-doc.html"
+alias ddoc-pdf="librewolf design-doc.pdf; unalias ddoc-pdf; history -s librewolf design-doc.pdf"
+
+## usage: __cleanup
+function __cleanup {
+    rmcache
+    jbackup do download-video
+}
+trap __cleanup EXIT
 
 ## usage: _test [MOD] [ARG ...]
 function _test {
@@ -59,6 +68,8 @@ Commands:
   * _test
   * cov (once, modifies history)
   * create-stub
+  * ddoc-html (once, modifies history)
+  * ddoc-pdf (once, modifies history)
   * emacs (once, modifies history)
   * pytest-coverage (once, modifies history)
   * reset_prompt
