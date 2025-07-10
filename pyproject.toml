@@ -16,7 +16,7 @@ dependencies = [
 ]
 
 [tool.poetry.scripts]
-download-video = "download_video.app:app"
+jdv = "download_video.app:app"
 
 [tool.poetry.group.dev.dependencies]
 jupyterlab = "^4.4.3"
