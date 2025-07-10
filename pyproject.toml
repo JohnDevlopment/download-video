@@ -24,6 +24,7 @@ basedpyright = "^1.29.2"
 icecream = "^2.1.4"
 ruff = "^0.11.13"
 pandas = "^2.3.0"
+pytest = {version = "^8.4.1", extras = ["pytest-cov", "coverage"]}
 
 [[tool.poetry.source]]
 name = "dev"
