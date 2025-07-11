@@ -3386,10 +3386,7 @@ type = "legacy"
 url = "http://localhost:5014/john/dev/+simple"
 reference = "dev"
 
-[extras]
-typer = ["click-option-group"]
-
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "68b389ac822716ba6e3d99ed2a1ad6a84ce1fa6f4371f51abeeb430e5fbe706a"
+content-hash = "1933fc4f55494f2f0a0d17799373ffa166cddb1dd10a98c785deb61b3f47c891"
