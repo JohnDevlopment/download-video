@@ -1,9 +1,10 @@
 from __future__ import annotations
 
-import importlib, logging
+import importlib
+import logging
 from pathlib import Path
 
-from result import Ok, Err, Result
+from result import Err, Ok, Result, is_err
 
 from .sites import SiteInfo, SiteProcessor
 
@@ -24,9 +25,12 @@ def match_url(url: str) -> Result[tuple[SiteProcessor, str], str]:
     _logger.debug("Attempting to find a site processor for '%s'", url)
 
     for sp in _site_processors:
-        nurl = sp.normalize_url(url)
-        if nurl is not None:
-            return Ok((sp, nurl))
+        match sp.normalize_url(url):
+            case Ok(u):
+                return Ok((sp, u))
+
+            case Err(e):
+                return Err(str(e))
 
     return Err("Could not find matching site processor")
 

@@ -2,9 +2,11 @@ from __future__ import annotations
 
 from typing import Protocol, runtime_checkable
 
+from result import Result
+
+from ..site_processors._utils import InvalidURLError
 from .formats import (
     Format,
-    FormatSelectionFlags,
     FormatSelectionStrategy,
     FormatSelector,
 )
@@ -20,9 +22,9 @@ class SiteInfo(Protocol):
 
 @runtime_checkable
 class SiteProcessor(Protocol):
-    _STRATEGIES: dict[FormatSelectionFlags, FormatSelectionStrategy]
+    _STRATEGIES: dict[int, FormatSelectionStrategy]
 
-    def normalize_url(self, url: str, /) -> str | None:
+    def normalize_url(self, url: str, /) -> Result[str, InvalidURLError]:
         ...
 
     def extract_info(self, url: str, /) -> SiteInfo:
