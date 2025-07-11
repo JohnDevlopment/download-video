@@ -38,7 +38,7 @@ def video_only_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
 def video_only_no_height_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
     ...
 
-_STRATEGIES: dict[FormatSelectionFlags, FormatSelectionStrategy] = {
+_STRATEGIES: dict[int, FormatSelectionStrategy] = {
     (FormatSelectionFlags.AUDIO & FormatSelectionFlags.VIDEO
      & FormatSelectionFlags.HEIGHT): audio_video_strategy,
     (FormatSelectionFlags.AUDIO & FormatSelectionFlags.VIDEO): audio_video_no_height_strategy,
