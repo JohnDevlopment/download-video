@@ -15,6 +15,8 @@ from .site_processors.formats import FormatSelector, FormatType
 CONTEXT_SETTINGS = {
     'help_option_names': ["--help", "-h"],
 }
+app = typer.Typer(context_settings=CONTEXT_SETTINGS)
+_logger: logging.Logger
 
 @app.callback()
 def main():
@@ -41,7 +43,9 @@ def video(
     """
     Download a video from the internet using certain criteria.
     """
-    setup_logging()
+    from . import APP
+    setup_logging(APP)
+    _logger = logging.getLogger(APP)
     register_site_processors()
 
     selector = FormatSelector(None, FormatType.VIDEO_ONLY)
