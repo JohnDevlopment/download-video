@@ -4,6 +4,7 @@ import re
 from typing import TYPE_CHECKING
 
 from icecream import ic
+from result import Err, Ok, Result
 
 from ..site_processors.formats import FormatSelector
 from ._utils import InvalidURLError
@@ -48,11 +49,11 @@ _STRATEGIES: dict[int, FormatSelectionStrategy] = {
 
 ##############
 
-def normalize_url(url: str, /) -> str:
+def normalize_url(url: str, /) -> Result[str, InvalidURLError]:
     if (m := REGEX.fullmatch(url)) is None:
-        raise InvalidURLError(url, *SPECS)
+        return Err(InvalidURLError(url, *SPECS))
 
-    return f"https://{NETLOC}/watch?v={m[1]}"
+    return Ok(f"https://{NETLOC}/watch?v={m[1]}")
 
 def extract_info(url: str, /) -> SiteInfo:
     ...
