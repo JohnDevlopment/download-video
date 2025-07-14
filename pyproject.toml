@@ -1,6 +1,6 @@
 [project]
 name = "download-video"
-version = "1.0a0"
+version = "1.0"
 description = "Easily download videos from Youtube."
 authors = [
     {name = "JohnDevlopment",email = "50782633+JohnDevlopment@users.noreply.github.com"}
