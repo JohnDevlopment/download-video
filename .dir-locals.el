@@ -1,7 +1,8 @@
 ;;; Directory Local Variables
 ;;; For more information see (info "(emacs) Directory Variables")
 
-((nil . ((eval . (unless
+((nil . ((org-special-block-add-html-extra . nil)
+	 (eval . (unless
 		     (fboundp 'mc-foldview)
 		   (defun mc-foldview
 		       (&optional arg)
