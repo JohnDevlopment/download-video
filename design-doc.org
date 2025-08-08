@@ -10,7 +10,7 @@
 #+html_head: <link rel="stylesheet" href="design-doc.css">
 
 #+macro: name Download Video
-#+macro: bin jdv
+#+macro: bin ~jdv~
 #+macro: secref [[*$1][$1]]
 #+macro: actdiag (eval (format "#+caption: %s\n[[file:design-doc_files/act_%s.png]]" $1 $2))
 #+macro: clsdiag (eval (format "#+caption: %s\n[[file:design-doc_files/cls_%s.png]]" $1 $2))
@@ -60,7 +60,7 @@ This comprises the "main" function of the application.
 The lone positional argument is treated as a string URL by default; if *-r* is
 passed, it's treated as a path.
 
-*Options*
+*** Options
 
 | Short | Long                | Note                                                   |
 |-------+---------------------+--------------------------------------------------------|
@@ -70,10 +70,10 @@ passed, it's treated as a path.
 |       | ~--height~ /NUMBER/ | Selects the best format according to the video height. |
 |       | ~--audio-only~      | Selects only audio formats                             |
 |       | ~--video-only~      | Selects only video formats                             |
-| ~-y~  | ~--yes~             | Automatically says yes to every prompt                 |
 
 ** TODO ~ost~
    :LOGBOOK:
+   CLOCK: [2025-07-10 Thu 18:36]--[2025-07-10 Thu 18:38] =>  0:02
    CLOCK: [2025-07-10 Thu 16:59]--[2025-07-10 Thu 17:01] =>  0:02
    :END:
 
@@ -100,6 +100,23 @@ downloaded files.
 | ~-a~  | ~--artist~ /ARTIST/ | Embeds /ARTIST/ as the artist metadata into the file |
 | ~-A~  | ~--album~ /ALBUM/   | Embeds /ALBUM/ as the album metadata into the file   |
 | ~-g~  | ~--genre~ /GENRE/   | Embeds /GENRE/ as the genre metadata into the file   |
+
+** TODO ~config~
+   :LOGBOOK:
+   CLOCK: [2025-07-10 Thu 18:33]--[2025-07-10 Thu 18:33] =>  0:00
+   CLOCK: [2025-07-10 Thu 18:15]--[2025-07-10 Thu 18:17] =>  0:02
+   :END:
+
+Set configuration variables.
+
+#+begin_example
+  Usage:
+    jdv config VARIABLE [VALUE]
+#+end_example
+
+*** TODO Variables
+
+Under construction.
 
 * Technical Specification
 
@@ -188,10 +205,14 @@ A format is chosen from the dictionary via the strategy pattern.  There are
 
 {{{clsdiag(Format Selections,format-selection)}}}
 
-** Configuration
+** TODO Configuration
+
+#+begin_admonition notice
+This part of the project has not been added.
+#+end_admonition
 
 A configuration file controls the exact behavior of {{{name}}}.  There is a
-global section followed sections for each supported site.  Their respective
+global section followed by sections for each supported site.  Their respective
 values are explained under {{{secref(Supported Sites)}}}.
 
 The ~config~ subpackage handles the entire configuration framework.  In the
@@ -201,6 +222,8 @@ standard config directory, a Toml file is used called ~config.toml~.
 
 *** TODO Youtube
     :LOGBOOK:
+    CLOCK: [2025-07-15 Tue 07:47]--[2025-07-15 Tue 07:47] =>  0:00
+    CLOCK: [2025-07-15 Tue 07:07]--[2025-07-15 Tue 07:38] =>  0:31
     CLOCK: [2025-06-18 Wed 18:51]--[2025-06-18 Wed 18:52] =>  0:01
     CLOCK: [2025-06-18 Wed 17:36]--[2025-06-18 Wed 18:04] =>  0:28
     CLOCK: [2025-06-18 Wed 16:04]--[2025-06-18 Wed 16:16] =>  0:12
@@ -215,8 +238,10 @@ standard config directory, a Toml file is used called ~config.toml~.
     CLOCK: [2025-06-17 Tue 10:42]--[2025-06-17 Tue 10:47] =>  0:05
     :END:
 
+#+begin_admonition notice
 Right now, Youtube is the only site supported by {{{name}}}.  This will likely
 change in the future when this project has taken shape and is out of alpha.
+#+end_admonition
 
 The site processor for Youtube matches URLs with the following formats:
 - https​://www.youtube.com/watch?v=XXXXXXXXXXX

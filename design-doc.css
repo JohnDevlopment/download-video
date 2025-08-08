@@ -1,20 +1,23 @@
-aside {
-    background-color: #F5F5F5;
-    border: 1px solid #616161;
-    padding: 0 1em;
+.admonition-base, .admonition-todo, .admonition-notice {
+  background-color: lightgrey;
+  border-radius: 15px;
+  padding: 1em;
 }
 
-section {
-    border: 1px solid #616161;
-    border-left-width: 0;
-    border-right-width: 0;
-    padding: 0 1em;
+.admonition-notice {
+  background-color: aliceblue;
+}
+
+.admonition-todo {
+  background-color: lightyellow;
 }
 
 th.org-left {
-    padding-right: 1em;
+  padding-right: 1em;
 }
 
 td.org-left {
-    padding-right: 1em;
+  padding-right: 1em;
 }
+
+/*# sourceMappingURL=design-doc.css.map */

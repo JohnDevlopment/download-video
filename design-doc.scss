@@ -1,0 +1,23 @@
+.admonition-base {
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 1em;
+}
+
+.admonition-notice {
+    @extend .admonition-base;
+    background-color: aliceblue;
+}
+
+.admonition-todo {
+    @extend .admonition-base;
+    background-color: lightyellow;
+}
+
+th.org-left {
+    padding-right: 1em;
+}
+
+td.org-left {
+    padding-right: 1em;
+}
