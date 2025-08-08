@@ -48,7 +48,11 @@ def video(
     _logger = logging.getLogger(APP)
     register_site_processors()
 
-    selector = FormatSelector(None, FormatType.VIDEO_ONLY)
+    # If not video only, will either be audio only or have both
+    temp = FormatType.VIDEO_ONLY
+    if not video_only:
+        temp = FormatType.AUDIO_ONLY if audio_only else FormatType.AUDIO_VIDEO
+    selector = FormatSelector(height, temp)
 
     if rename:
         return 0
