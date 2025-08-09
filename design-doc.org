@@ -29,8 +29,8 @@ From this point in the document, the following definitions apply:
 
 - Video :: Refers to any file which contains either a video stream, an audio
   stream, or both.
-- Site processor :: A singleton class that contains methods for handling
-  site-specific implementations of the ~SiteProcessor~ interface.
+- Site processor :: A singleton class that handles site-specific implementations
+  of the ~SiteProcessor~ interface.
 
 * User Interface
 
