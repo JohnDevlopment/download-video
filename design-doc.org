@@ -25,8 +25,10 @@ downloading videos and OSTs.
 
 * Terminology
 
-- Video :: In this document, refers to any video or audio file, including videos
-  with or without audio.
+From this point in the document, the following definitions apply:
+
+- Video :: Refers to any file which contains either a video stream, an audio
+  stream, or both.
 - Site processor :: A singleton class that contains methods for handling
   site-specific implementations of the ~SiteProcessor~ interface.
 
