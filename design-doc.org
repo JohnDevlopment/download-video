@@ -34,7 +34,7 @@ From this point in the document, the following definitions apply:
 
 * User Interface
 
-{{{bin}}} is comprised of three subcommands:
+{{{bin}}} has three commands:
 - ~video~ for downloading videos
 - ~ost~ for downloading OSTs
 - ~config~ for setting/getting config variables
