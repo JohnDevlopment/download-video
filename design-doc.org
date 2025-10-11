@@ -48,8 +48,7 @@ From this point in the document, the following definitions apply:
    CLOCK: [2025-06-18 Wed 19:40]--[2025-06-18 Wed 19:43] =>  0:03
    :END:
 
-Download videos from the internet using several criteria to filter formats.
-This comprises the "main" function of the application.
+Downloads videos from the internet using several criteria to filter formats.
 
 #+begin_example
   Usage:
