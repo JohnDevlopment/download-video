@@ -46,15 +46,20 @@
 		      arg))))))
  (org-mode . ((mode . local-lambda)
 	      (eval . (progn
-			(local-lambda-define-skeleton name "docstring" "Caption: " "\\begin{figure}[htbp]" n "\\centering" n "\\begin{adjustbox}{max width=\\textwidth, max height="
-						      (progn
-							(setq v1
-							      (read-number "Max height [0,1]: " 0.7))
-							(prin1-to-string
-							 (min v1 1.0)))
-						      "\\textheight, keepaspectratio}" n "\\includegraphics{"
-						      (f-relative
-						       (read-file-name "Image: "))
-						      125 n "\\end{adjustbox}" n "\\caption{" str 125 n "\\end{figure}")))
+			(local-lambda-define-skeleton name
+			  "docstring"
+			  "Caption: "
+			  "\\begin{figure}[htbp]" \n
+			  "\\centering" \n
+			  "\\begin{adjustbox}{max width=\\textwidth, max height="
+			  (progn
+			    (setq v1
+				  (read-number "Max height [0,1]: " 0.7))
+			    (prin1-to-string
+			     (min v1 1.0)))
+			  "\\textheight, keepaspectratio}" n "\\includegraphics{"
+			  (f-relative
+			   (read-file-name "Image: "))
+			  125 n "\\end{adjustbox}" n "\\caption{" str 125 n "\\end{figure}")))
 	      (mode . display-fill-column-indicator)
 	      (mode . auto-fill))))
