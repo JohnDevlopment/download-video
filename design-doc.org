@@ -39,7 +39,7 @@ From this point in the document, the following definitions apply:
 - ~ost~ for downloading OSTs
 - ~config~ for setting/getting config variables
 
-** DONE ~video~
+** ~video~
    - State "DONE"       from "TODO"       [2025-07-10 Thu 16:59]
    - State "DONE"       from "TODO"       [2025-06-21 Sat 21:34]
    :LOGBOOK:
@@ -73,7 +73,7 @@ passed, it's treated as a path.
 |       | ~--audio-only~      | Selects only audio formats                             |
 |       | ~--video-only~      | Selects only video formats                             |
 
-** TODO ~ost~
+** ~ost~
    :LOGBOOK:
    CLOCK: [2025-07-10 Thu 18:36]--[2025-07-10 Thu 18:38] =>  0:02
    CLOCK: [2025-07-10 Thu 16:59]--[2025-07-10 Thu 17:01] =>  0:02
@@ -82,7 +82,7 @@ passed, it's treated as a path.
 Download audio OSTs from the internet, optionally setting metadata for the
 downloaded files.
 
-*** DONE Options
+*** Options
     - State "DONE"       from "TODO"       [2025-07-10 Thu 17:22]
     :LOGBOOK:
     CLOCK: [2025-07-10 Thu 17:14]--[2025-07-10 Thu 17:22] =>  0:08
@@ -103,7 +103,7 @@ downloaded files.
 | ~-A~  | ~--album~ /ALBUM/   | Embeds /ALBUM/ as the album metadata into the file   |
 | ~-g~  | ~--genre~ /GENRE/   | Embeds /GENRE/ as the genre metadata into the file   |
 
-** TODO ~config~
+** ~config~
    :LOGBOOK:
    CLOCK: [2025-07-10 Thu 18:33]--[2025-07-10 Thu 18:33] =>  0:00
    CLOCK: [2025-07-10 Thu 18:15]--[2025-07-10 Thu 18:17] =>  0:02
@@ -116,7 +116,7 @@ Set configuration variables.
     jdv config VARIABLE [VALUE]
 #+end_example
 
-*** TODO Variables
+*** Variables
 
 Under construction.
 
@@ -132,7 +132,7 @@ Under construction.
 Standard library:
 - [[https://docs.python.org/3.12/library/urllib.parse.html][~urllib.parse~]] :: It conains [[https://docs.python.org/3.12/library/urllib.parse.html#urllib.parse.urlparse][urlparse]], which we use to normalize URLs
 
-** DONE Overview
+** Overview
    - State "DONE"       from "TODO"       [2025-06-25 Wed 10:08]
    - State "DONE"       from "TODO"       [2025-06-21 Sat 21:31]
    :LOGBOOK:
@@ -142,7 +142,7 @@ Standard library:
 
 {{{actdiag(Overview,overview)}}}
 
-*** DONE Getting Site Processor
+*** Getting Site Processor
     - State "DONE"       from "TODO"       [2025-06-21 Sat 22:42]
     :LOGBOOK:
     CLOCK: [2025-06-21 Sat 22:33]--[2025-06-21 Sat 22:42] =>  0:09
@@ -159,7 +159,7 @@ process.
 #+label: fig:sitesig
 {{{clsdiag(Site Processor,site-singleton)}}}
 
-*** DONE URL Normalization
+*** URL Normalization
     - State "DONE"       from "TODO"       [2025-06-21 Sat 22:48]
     :LOGBOOK:
     CLOCK: [2025-06-21 Sat 22:46]--[2025-06-21 Sat 22:48] =>  0:02
@@ -174,7 +174,7 @@ The site processor has a function for normalizing URLs, which is done before
 extracting the info dictionary.  The exact method will change depending on the
 site processor (see {{{secref(Supported Sites)}}}).
 
-*** DONE Extracting Info Dictionary
+*** Extracting Info Dictionary
     - State "DONE"       from "TODO"       [2025-06-21 Sat 23:09]
     :LOGBOOK:
     CLOCK: [2025-06-21 Sat 22:49]--[2025-06-21 Sat 23:09] =>  0:20
@@ -187,7 +187,7 @@ dictionary-like object with a ~get_url~ method.  It is intentially opaque, so
 only the site processor itself knows what to do with it.  However, some parts of
 the dictionary are made visible via getter methods.
 
-*** DONE Selecting A Format
+*** Selecting A Format
     - State "DONE"       from "TODO"       [2025-06-25 Wed 10:08]
     :LOGBOOK:
     CLOCK: [2025-06-25 Wed 09:57]--[2025-06-25 Wed 10:08] =>  0:11
@@ -207,7 +207,7 @@ A format is chosen from the dictionary via the strategy pattern.  There are
 
 {{{clsdiag(Format Selections,format-selection)}}}
 
-** TODO Configuration
+** Configuration
 
 #+begin_admonition notice
 This part of the project has not been added.
@@ -222,7 +222,7 @@ standard config directory, a Toml file is used called ~config.toml~.
 
 ** Supported Sites
 
-*** TODO Youtube
+*** Youtube
     :LOGBOOK:
     CLOCK: [2025-07-15 Tue 07:47]--[2025-07-15 Tue 07:47] =>  0:00
     CLOCK: [2025-07-15 Tue 07:07]--[2025-07-15 Tue 07:38] =>  0:31
@@ -255,7 +255,7 @@ The info dictionary returned by Youtube has this structure:
 
 {{{digdiag(Info Dictionary - Youtube,youtube-json)}}}
 
-**** DONE URL Normalization
+**** URL Normalization
      - State "DONE"       from "TODO"       [2025-06-25 Wed 10:10]
      :LOGBOOK:
      CLOCK: [2025-06-25 Wed 10:10]--[2025-06-25 Wed 10:10] =>  0:00
@@ -265,7 +265,7 @@ The info dictionary returned by Youtube has this structure:
 URL normalization is done by matching a URL with a regular expression and
 capturing the video ID, then returning a "proper" URL with said video ID.
 
-**** DONE Format Selection
+**** Format Selection
      - State "DONE"       from "TODO"       [2025-06-25 Wed 10:15]
      :LOGBOOK:
      CLOCK: [2025-06-25 Wed 10:11]--[2025-06-25 Wed 10:15] =>  0:04
