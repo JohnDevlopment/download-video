@@ -7,7 +7,7 @@
 
 #+latex_header: \usepackage{adjustbox}
 
-#+html_head: <link rel="stylesheet" href="design-doc.css">
+#+html_head: <link rel="stylesheet" href="design-doc_files/main.css">
 
 #+macro: name Download Video
 #+macro: bin ~jdv~

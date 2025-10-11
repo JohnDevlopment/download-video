@@ -1,0 +1,44 @@
+@mixin border {
+    width: 1px;
+    style: solid;
+}
+
+body {
+    width: 75%;
+    align-content: center;
+    padding: 0 10%;
+}
+
+.note {
+    padding: 1em;
+
+    background-color: transparentize(darkgray, 0.9);
+
+    border: {
+	top: {
+	    @include border;
+	}
+	bottom: {
+	    @include border;
+	}
+    }
+
+    h3 {
+	text-align: center;
+    }
+}
+
+th.org-left {
+    padding-right: 1em;
+}
+
+td.org-left {
+    @extend th, .org-left;
+}
+
+kbd {
+    background-image: linear-gradient(to bottom right, #E3E3E3, #A8A8A8);
+    border: 2px outset black;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
