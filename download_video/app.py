@@ -14,16 +14,16 @@ from .site_processors.formats import FormatSelector, FormatType
 CONTEXT_SETTINGS = {
     'help_option_names': ["--help", "-h"],
 }
-cli = typer.Typer(context_settings=CONTEXT_SETTINGS)
+app = typer.Typer(context_settings=CONTEXT_SETTINGS)
 _logger: logging.Logger
 
-@cli.callback()
+@app.callback()
 def main():
     """
     Video downloader.
     """
 
-@cli.command()
+@app.command()
 def video(
     url_or_file: Annotated[
         str,
