@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional, cast
+from typing import Annotated, Optional
 
-import click
 import typer
-from click_option_group import MutuallyExclusiveOptionGroup, optgroup
 from result import Err, Ok
 
+from . import APP
 from .my_logging import setup_logging
 from .site_processors import match_url, register_site_processors
 from .site_processors.formats import FormatSelector, FormatType
@@ -15,37 +14,47 @@ from .site_processors.formats import FormatSelector, FormatType
 CONTEXT_SETTINGS = {
     'help_option_names': ["--help", "-h"],
 }
-app = typer.Typer(context_settings=CONTEXT_SETTINGS)
+cli = typer.Typer(context_settings=CONTEXT_SETTINGS)
 _logger: logging.Logger
 
-@app.callback()
+@cli.callback()
 def main():
     """
     Video downloader.
     """
 
-@click.command()
-@optgroup("Group 1", cls=MutuallyExclusiveOptionGroup)
-@optgroup.option("--video-only", is_flag=True, default=False,)
-@optgroup.option("--audio-only", is_flag=True, default=False,)
-@click.argument("url_or_file")
-@click.option("-r", "--rename", is_flag=True, default=False,
-              help="Rename file; treats URL_OR_FILE as FILE.")
-@click.option("--height", type=int, default=None,
-              help="Maximum height of the video; ignored if --audio-only.")
+@cli.command()
 def video(
-    url_or_file: str,
-    video_only: bool,
-    height: Optional[int],
-    audio_only: bool,
-    rename: bool
+    url_or_file: Annotated[
+        str,
+        typer.Argument(show_default=False, help="The URL or file to parse.")
+    ],
+    video_only: Annotated[
+        bool,
+        typer.Option("--video-only", show_default=False, help="Select a video-only format.")
+    ] = False,
+    height: Annotated[
+        Optional[int],
+        typer.Option(show_default=False, help="For video formats, select based on height.")
+    ] = None,
+    audio_only: Annotated[
+        bool,
+        typer.Option("--audio-only", show_default=False, help="Select an audio-only format.")
+    ] = False,
+    rename: Annotated[
+        bool,
+        typer.Option("--rename", show_default=False, help="Rename a file.")
+    ] = False
 ) -> int:
     """
     Download a video from the internet using certain criteria.
     """
-    from . import APP
+    global _logger
+
+    # Setup logging system
     setup_logging(APP)
     _logger = logging.getLogger(APP)
+
     register_site_processors()
 
     # If not video only, will either be audio only or have both
@@ -71,6 +80,3 @@ def video(
     sp.download(url, fmt)
 
     return 0
-
-cli = cast("click.Group", typer.main.get_command(app))
-cli.add_command(video)
