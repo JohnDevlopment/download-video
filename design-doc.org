@@ -220,6 +220,7 @@ standard config directory, a Toml file is used called ~config.toml~.
 
 *** Youtube
     :LOGBOOK:
+    CLOCK: [2025-10-12 Sun 07:36]--[2025-10-12 Sun 07:38] =>  0:02
     CLOCK: [2025-07-15 Tue 07:47]--[2025-07-15 Tue 07:47] =>  0:00
     CLOCK: [2025-07-15 Tue 07:07]--[2025-07-15 Tue 07:38] =>  0:31
     CLOCK: [2025-06-18 Wed 18:51]--[2025-06-18 Wed 18:52] =>  0:01
@@ -236,10 +237,13 @@ standard config directory, a Toml file is used called ~config.toml~.
     CLOCK: [2025-06-17 Tue 10:42]--[2025-06-17 Tue 10:47] =>  0:05
     :END:
 
-#+begin_admonition notice
+{{{blkstart(notice)}}}
+{{{blkhead(Notice)}}}
+
 Right now, Youtube is the only site supported by {{{name}}}.  This will likely
 change in the future when this project has taken shape and is out of alpha.
-#+end_admonition
+
+{{{blkend}}}
 
 The site processor for Youtube matches URLs with the following formats:
 - https​://www.youtube.com/watch?v=XXXXXXXXXXX
