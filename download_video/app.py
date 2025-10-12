@@ -8,7 +8,7 @@ import typer
 from result import Err, Ok
 
 from . import APP
-from .my_logging import setup_logging
+from .my_logging import setup_logging, LogLevel
 from .site_processors import match_url, register_site_processors
 from .site_processors.formats import FormatSelector, FormatType
 
@@ -33,10 +33,20 @@ class MutuallyExclusiveParameters(click.UsageError):
         super().__init__(msg, ctx)
 
 @app.callback()
-def main():
+def main(
+    loglevel: Annotated[
+        LogLevel,
+        typer.Option(show_default=False, help="Set the logging level.", envvar="JDV_LOGLEVEL")
+    ] = LogLevel.INFO
+):
     """
     Video downloader.
     """
+    # Setup logging system
+    global _logger
+    setup_logging(APP, loglevel)
+    _logger = logging.getLogger(APP)
+    _logger.info("Logging system activated")
 
 @app.command()
 def video(
@@ -64,12 +74,6 @@ def video(
     """
     Download a video from the internet using certain criteria.
     """
-    global _logger
-
-    # Setup logging system
-    setup_logging(APP)
-    _logger = logging.getLogger(APP)
-
     if video_only and audio_only:
         raise MutuallyExclusiveParameters(["--video-only", "--audio-only"])
 
