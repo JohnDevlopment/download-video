@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-08-08 Fri 09:45 -->
+<!-- 2025-10-12 Sun 06:30 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Download Video</title>
@@ -191,7 +191,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="design-doc.css">
+<link rel="stylesheet" href="design-doc_files/main.css">
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -248,41 +248,41 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge259bf2">1. Terminology</a></li>
-<li><a href="#orgd3e8f79">2. User Interface</a>
+<li><a href="#orgef5e268">1. Terminology</a></li>
+<li><a href="#org094e687">2. User Interface</a>
 <ul>
-<li><a href="#org5a9f3a1">2.1. <span class="done DONE">DONE</span> <code>video</code></a>
+<li><a href="#org65e95d7">2.1. <code>video</code></a>
 <ul>
-<li><a href="#org00fd9f4">2.1.1. Options</a></li>
+<li><a href="#orgc017831">2.1.1. Options</a></li>
 </ul>
 </li>
-<li><a href="#org1603a16">2.2. <span class="todo TODO">TODO</span> <code>ost</code></a>
+<li><a href="#org6ecf1c8">2.2. <code>ost</code></a>
 <ul>
-<li><a href="#orgcf9ee96">2.2.1. <span class="done DONE">DONE</span> Options</a></li>
+<li><a href="#org646bd82">2.2.1. Options</a></li>
 </ul>
 </li>
-<li><a href="#org996e8c4">2.3. <span class="todo TODO">TODO</span> <code>config</code></a>
+<li><a href="#org1f49d59">2.3. <code>config</code></a>
 <ul>
-<li><a href="#org88ee2d8">2.3.1. <span class="todo TODO">TODO</span> Variables</a></li>
+<li><a href="#org3532c41">2.3.1. Variables</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orga86d54e">3. Technical Specification</a>
+<li><a href="#org7fd0d2a">3. Technical Specification</a>
 <ul>
-<li><a href="#orgbe46a88">3.1. Dependencies</a></li>
-<li><a href="#orgc320690">3.2. <span class="done DONE">DONE</span> Overview</a>
+<li><a href="#orge7208e7">3.1. Dependencies</a></li>
+<li><a href="#org026e0a9">3.2. Overview</a>
 <ul>
-<li><a href="#org0a3fc27">3.2.1. <span class="done DONE">DONE</span> Getting Site Processor</a></li>
-<li><a href="#orge01ad79">3.2.2. <span class="done DONE">DONE</span> URL Normalization</a></li>
-<li><a href="#orgb926b7d">3.2.3. <span class="done DONE">DONE</span> Extracting Info Dictionary</a></li>
-<li><a href="#org730d894">3.2.4. <span class="done DONE">DONE</span> Selecting A Format</a></li>
+<li><a href="#org3a96bde">3.2.1. Getting Site Processor</a></li>
+<li><a href="#org95daee6">3.2.2. URL Normalization</a></li>
+<li><a href="#org42f5bcb">3.2.3. Extracting Info Dictionary</a></li>
+<li><a href="#orge6d882d">3.2.4. Selecting A Format</a></li>
 </ul>
 </li>
-<li><a href="#orge99173a">3.3. <span class="todo TODO">TODO</span> Configuration</a></li>
-<li><a href="#orga326e0b">3.4. Supported Sites</a>
+<li><a href="#orgda7ba0f">3.3. Configuration</a></li>
+<li><a href="#org4311c76">3.4. Supported Sites</a>
 <ul>
-<li><a href="#org573c03e">3.4.1. <span class="todo TODO">TODO</span> Youtube</a></li>
+<li><a href="#org88143f3">3.4.1. Youtube</a></li>
 </ul>
 </li>
 </ul>
@@ -298,23 +298,26 @@ downloading videos and OSTs.
 
 </div>
 
-<div id="outline-container-orge259bf2" class="outline-2">
-<h2 id="orge259bf2"><span class="section-number-2">1</span> Terminology</h2>
+<div id="outline-container-orgef5e268" class="outline-2">
+<h2 id="orgef5e268"><span class="section-number-2">1</span> Terminology</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+From this point in the document, the following definitions apply:
+</p>
+
 <dl class="org-dl">
-<dt>Video</dt><dd>In this document, refers to any video or audio file, including videos
-with or without audio.</dd>
-<dt>Site processor</dt><dd>A singleton class that contains methods for handling
-site-specific implementations of the <code>SiteProcessor</code> interface.</dd>
+<dt>Video</dt><dd>A file that contains any combination of a video stream or an audio stream.</dd>
+<dt>Site processor</dt><dd>A singleton class that handles site-specific implementations
+of the <code>SiteProcessor</code> interface.</dd>
 </dl>
 </div>
 </div>
 
-<div id="outline-container-orgd3e8f79" class="outline-2">
-<h2 id="orgd3e8f79"><span class="section-number-2">2</span> User Interface</h2>
+<div id="outline-container-org094e687" class="outline-2">
+<h2 id="org094e687"><span class="section-number-2">2</span> User Interface</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-<code>jdv</code> is comprised of three subcommands:
+<code>jdv</code> has three commands:
 </p>
 <ul class="org-ul">
 <li><code>video</code> for downloading videos</li>
@@ -323,16 +326,11 @@ site-specific implementations of the <code>SiteProcessor</code> interface.</dd>
 </ul>
 </div>
 
-<div id="outline-container-org5a9f3a1" class="outline-3">
-<h3 id="org5a9f3a1"><span class="section-number-3">2.1</span> <span class="done DONE">DONE</span> <code>video</code></h3>
+<div id="outline-container-org65e95d7" class="outline-3">
+<h3 id="org65e95d7"><span class="section-number-3">2.1</span> <code>video</code></h3>
 <div class="outline-text-3" id="text-2-1">
-<ul class="org-ul">
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-07-10 Thu 16:59]</span></span></li>
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-06-21 Sat 21:34]</span></span></li>
-</ul>
 <p>
-Download videos from the internet using several criteria to filter formats.
-This comprises the "main" function of the application.
+Downloads videos from the internet using several criteria to filter formats.
 </p>
 
 <pre class="example">
@@ -344,13 +342,12 @@ Usage:
 </pre>
 
 <p>
-The lone positional argument is treated as a string URL by default; if <b>-r</b> is
-passed, it's treated as a path.
+The lone positional argument is treated as a string URL unless <b>-r</b> is passed, in which case it is treated as a path.
 </p>
 </div>
 
-<div id="outline-container-org00fd9f4" class="outline-4">
-<h4 id="org00fd9f4"><span class="section-number-4">2.1.1</span> Options</h4>
+<div id="outline-container-orgc017831" class="outline-4">
+<h4 id="orgc017831"><span class="section-number-4">2.1.1</span> Options</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <table>
 
@@ -373,13 +370,13 @@ passed, it's treated as a path.
 <tr>
 <td class="org-left"><code>-n</code></td>
 <td class="org-left"><code>--dry-run</code></td>
-<td class="org-left">Prints only what will happen</td>
+<td class="org-left">Prints only what will happen.</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>-r</code></td>
 <td class="org-left"><code>--rename</code></td>
-<td class="org-left">Renames the file instead of downloading from <i>URL</i></td>
+<td class="org-left">Renames the file instead of downloading from <i>URL</i>.</td>
 </tr>
 
 <tr>
@@ -391,13 +388,13 @@ passed, it's treated as a path.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left"><code>--audio-only</code></td>
-<td class="org-left">Selects only audio formats</td>
+<td class="org-left">Selects only audio formats.</td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left"><code>--video-only</code></td>
-<td class="org-left">Selects only video formats</td>
+<td class="org-left">Selects only video formats.</td>
 </tr>
 </tbody>
 </table>
@@ -405,21 +402,17 @@ passed, it's treated as a path.
 </div>
 </div>
 
-<div id="outline-container-org1603a16" class="outline-3">
-<h3 id="org1603a16"><span class="section-number-3">2.2</span> <span class="todo TODO">TODO</span> <code>ost</code></h3>
+<div id="outline-container-org6ecf1c8" class="outline-3">
+<h3 id="org6ecf1c8"><span class="section-number-3">2.2</span> <code>ost</code></h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-Download audio OSTs from the internet, optionally setting metadata for the
-downloaded files.
+Downloads audio OSTs from the internet, optionally setting metadata for the downloaded files.
 </p>
 </div>
 
-<div id="outline-container-orgcf9ee96" class="outline-4">
-<h4 id="orgcf9ee96"><span class="section-number-4">2.2.1</span> <span class="done DONE">DONE</span> Options</h4>
+<div id="outline-container-org646bd82" class="outline-4">
+<h4 id="org646bd82"><span class="section-number-4">2.2.1</span> Options</h4>
 <div class="outline-text-4" id="text-2-2-1">
-<ul class="org-ul">
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-07-10 Thu 17:22]</span></span></li>
-</ul>
 <pre class="example">
 Usage:
   jdv ost [OPTIONS] URL [FILE]
@@ -446,31 +439,31 @@ Usage:
 <tr>
 <td class="org-left"><code>-n</code></td>
 <td class="org-left"><code>--dry-run</code></td>
-<td class="org-left">Prints only what will happen</td>
+<td class="org-left">Prints only what will happen.</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>-t</code></td>
 <td class="org-left"><code>--title</code> <i>TITLE</i></td>
-<td class="org-left">Embeds <i>TITLE</i> as the title metadata into the file</td>
+<td class="org-left">Embeds <i>TITLE</i> as the title metadata into the file.</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>-a</code></td>
 <td class="org-left"><code>--artist</code> <i>ARTIST</i></td>
-<td class="org-left">Embeds <i>ARTIST</i> as the artist metadata into the file</td>
+<td class="org-left">Embeds <i>ARTIST</i> as the artist metadata into the file.</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>-A</code></td>
 <td class="org-left"><code>--album</code> <i>ALBUM</i></td>
-<td class="org-left">Embeds <i>ALBUM</i> as the album metadata into the file</td>
+<td class="org-left">Embeds <i>ALBUM</i> as the album metadata into the file.</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>-g</code></td>
 <td class="org-left"><code>--genre</code> <i>GENRE</i></td>
-<td class="org-left">Embeds <i>GENRE</i> as the genre metadata into the file</td>
+<td class="org-left">Embeds <i>GENRE</i> as the genre metadata into the file.</td>
 </tr>
 </tbody>
 </table>
@@ -478,11 +471,11 @@ Usage:
 </div>
 </div>
 
-<div id="outline-container-org996e8c4" class="outline-3">
-<h3 id="org996e8c4"><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> <code>config</code></h3>
+<div id="outline-container-org1f49d59" class="outline-3">
+<h3 id="org1f49d59"><span class="section-number-3">2.3</span> <code>config</code></h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-Set configuration variables.
+Sets configuration variables.
 </p>
 
 <pre class="example">
@@ -491,8 +484,8 @@ Usage:
 </pre>
 </div>
 
-<div id="outline-container-org88ee2d8" class="outline-4">
-<h4 id="org88ee2d8"><span class="section-number-4">2.3.1</span> <span class="todo TODO">TODO</span> Variables</h4>
+<div id="outline-container-org3532c41" class="outline-4">
+<h4 id="org3532c41"><span class="section-number-4">2.3.1</span> Variables</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 Under construction.
@@ -502,12 +495,12 @@ Under construction.
 </div>
 </div>
 
-<div id="outline-container-orga86d54e" class="outline-2">
-<h2 id="orga86d54e"><span class="section-number-2">3</span> Technical Specification</h2>
+<div id="outline-container-org7fd0d2a" class="outline-2">
+<h2 id="org7fd0d2a"><span class="section-number-2">3</span> Technical Specification</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgbe46a88" class="outline-3">
-<h3 id="orgbe46a88"><span class="section-number-3">3.1</span> Dependencies</h3>
+<div id="outline-container-orge7208e7" class="outline-3">
+<h3 id="orge7208e7"><span class="section-number-3">3.1</span> Dependencies</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Download Video uses:
@@ -527,13 +520,9 @@ Standard library:
 </div>
 </div>
 
-<div id="outline-container-orgc320690" class="outline-3">
-<h3 id="orgc320690"><span class="section-number-3">3.2</span> <span class="done DONE">DONE</span> Overview</h3>
+<div id="outline-container-org026e0a9" class="outline-3">
+<h3 id="org026e0a9"><span class="section-number-3">3.2</span> Overview</h3>
 <div class="outline-text-3" id="text-3-2">
-<ul class="org-ul">
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-06-25 Wed 10:08]</span></span></li>
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-06-21 Sat 21:31]</span></span></li>
-</ul>
 
 <figure>
 <img src="design-doc_files/act_overview.png" alt="act_overview.png">
@@ -542,12 +531,9 @@ Standard library:
 </figure>
 </div>
 
-<div id="outline-container-org0a3fc27" class="outline-4">
-<h4 id="org0a3fc27"><span class="section-number-4">3.2.1</span> <span class="done DONE">DONE</span> Getting Site Processor</h4>
+<div id="outline-container-org3a96bde" class="outline-4">
+<h4 id="org3a96bde"><span class="section-number-4">3.2.1</span> Getting Site Processor</h4>
 <div class="outline-text-4" id="text-3-2-1">
-<ul class="org-ul">
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-06-21 Sat 22:42]</span></span></li>
-</ul>
 <p>
 The URL is matched with a list of preregistered singletons known as <i>site</i>
 <i>processors</i>.  That is to say, certain Python modules are treated as singletons.
@@ -556,7 +542,7 @@ process.
 </p>
 
 
-<figure id="org0d5da5b">
+<figure id="org4d2aef4">
 <img src="design-doc_files/cls_site-singleton.png" alt="cls_site-singleton.png">
 
 <figcaption><span class="figure-number">Figure 2: </span>Site Processor</figcaption>
@@ -564,28 +550,22 @@ process.
 </div>
 </div>
 
-<div id="outline-container-orge01ad79" class="outline-4">
-<h4 id="orge01ad79"><span class="section-number-4">3.2.2</span> <span class="done DONE">DONE</span> URL Normalization</h4>
+<div id="outline-container-org95daee6" class="outline-4">
+<h4 id="org95daee6"><span class="section-number-4">3.2.2</span> URL Normalization</h4>
 <div class="outline-text-4" id="text-3-2-2">
-<ul class="org-ul">
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-06-21 Sat 22:48]</span></span></li>
-</ul>
 <p>
 The site processor has a function for normalizing URLs, which is done before
 extracting the info dictionary.  The exact method will change depending on the
-site processor (see <a href="#orga326e0b">Supported Sites</a>).
+site processor (see <a href="#org4311c76">Supported Sites</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb926b7d" class="outline-4">
-<h4 id="orgb926b7d"><span class="section-number-4">3.2.3</span> <span class="done DONE">DONE</span> Extracting Info Dictionary</h4>
+<div id="outline-container-org42f5bcb" class="outline-4">
+<h4 id="org42f5bcb"><span class="section-number-4">3.2.3</span> Extracting Info Dictionary</h4>
 <div class="outline-text-4" id="text-3-2-3">
-<ul class="org-ul">
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-06-21 Sat 23:09]</span></span></li>
-</ul>
 <p>
-Refer to Figure Figure <a href="#org0d5da5b">2</a>.
+Refer to Figure Figure <a href="#org4d2aef4">2</a>.
 </p>
 
 <p>
@@ -597,12 +577,9 @@ the dictionary are made visible via getter methods.
 </div>
 </div>
 
-<div id="outline-container-org730d894" class="outline-4">
-<h4 id="org730d894"><span class="section-number-4">3.2.4</span> <span class="done DONE">DONE</span> Selecting A Format</h4>
+<div id="outline-container-orge6d882d" class="outline-4">
+<h4 id="orge6d882d"><span class="section-number-4">3.2.4</span> Selecting A Format</h4>
 <div class="outline-text-4" id="text-3-2-4">
-<ul class="org-ul">
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-06-25 Wed 10:08]</span></span></li>
-</ul>
 <p>
 The abstract method <code>select_format</code> selects a suitable format based on the
 criteria provided by the user.  This criteria comes in the form of a
@@ -624,8 +601,8 @@ A format is chosen from the dictionary via the strategy pattern.  There are
 </div>
 </div>
 
-<div id="outline-container-orge99173a" class="outline-3">
-<h3 id="orge99173a"><span class="section-number-3">3.3</span> <span class="todo TODO">TODO</span> Configuration</h3>
+<div id="outline-container-orgda7ba0f" class="outline-3">
+<h3 id="orgda7ba0f"><span class="section-number-3">3.3</span> Configuration</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="admonition">
 <p>
@@ -637,7 +614,7 @@ This part of the project has not been added.
 <p>
 A configuration file controls the exact behavior of Download Video.  There is a
 global section followed by sections for each supported site.  Their respective
-values are explained under <a href="#orga326e0b">Supported Sites</a>.
+values are explained under <a href="#org4311c76">Supported Sites</a>.
 </p>
 
 <p>
@@ -647,12 +624,12 @@ standard config directory, a Toml file is used called <code>config.toml</code>.
 </div>
 </div>
 
-<div id="outline-container-orga326e0b" class="outline-3">
-<h3 id="orga326e0b"><span class="section-number-3">3.4</span> Supported Sites</h3>
+<div id="outline-container-org4311c76" class="outline-3">
+<h3 id="org4311c76"><span class="section-number-3">3.4</span> Supported Sites</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-org573c03e" class="outline-4">
-<h4 id="org573c03e"><span class="section-number-4">3.4.1</span> <span class="todo TODO">TODO</span> Youtube</h4>
+<div id="outline-container-org88143f3" class="outline-4">
+<h4 id="org88143f3"><span class="section-number-4">3.4.1</span> Youtube</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <div class="admonition">
 <p>
@@ -685,11 +662,8 @@ The info dictionary returned by Youtube has this structure:
 </div>
 
 <ol class="org-ol">
-<li><a id="orge039fc6"></a><span class="done DONE">DONE</span> URL Normalization<br>
+<li><a id="org32f5275"></a>URL Normalization<br>
 <div class="outline-text-5" id="text-3-4-1-1">
-<ul class="org-ul">
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-06-25 Wed 10:10]</span></span></li>
-</ul>
 <p>
 URL normalization is done by matching a URL with a regular expression and
 capturing the video ID, then returning a "proper" URL with said video ID.
@@ -697,14 +671,11 @@ capturing the video ID, then returning a "proper" URL with said video ID.
 </div>
 </li>
 
-<li><a id="org2ad94ac"></a><span class="done DONE">DONE</span> Format Selection<br>
+<li><a id="orgc512f86"></a>Format Selection<br>
 <div class="outline-text-5" id="text-3-4-1-2">
-<ul class="org-ul">
-<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2025-06-25 Wed 10:15]</span></span></li>
-</ul>
 <p>
 Selecting a format is done by trying to get the best (highest quality) video
-which satisfies the criteria outlined in <code>FormatSelector</code> (see Figure <a href="#org0d5da5b">2</a>).
+which satisfies the criteria outlined in <code>FormatSelector</code> (see Figure <a href="#org4d2aef4">2</a>).
 </p>
 
 
@@ -729,7 +700,7 @@ a format's quality is its total bitrate, denoted in the <code>tbr</code> element
 </div>
 <footer id="postamble" class="status">
 <p class="author">Author: John Russell</p>
-<p class="date">Created: 2025-08-08 Fri 09:45</p>
+<p class="date">Created: 2025-10-12 Sun 06:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </footer>
 </body>
