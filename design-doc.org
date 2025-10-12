@@ -40,6 +40,7 @@ From this point in the document, the following definitions apply:
 
 ** ~video~
    :LOGBOOK:
+   CLOCK: [2025-10-12 Sun 06:21]--[2025-10-12 Sun 06:24] =>  0:03
    CLOCK: [2025-07-10 Thu 16:56]--[2025-07-10 Thu 16:59] =>  0:03
    CLOCK: [2025-06-21 Sat 21:32]--[2025-06-21 Sat 21:34] =>  0:02
    CLOCK: [2025-06-18 Wed 19:40]--[2025-06-18 Wed 19:43] =>  0:03
@@ -55,19 +56,18 @@ Downloads videos from the internet using several criteria to filter formats.
     jdv video [-hny] -r FILE
 #+end_example
 
-The lone positional argument is treated as a string URL by default; if *-r* is
-passed, it's treated as a path.
+The lone positional argument is treated as a string URL unless *-r* is passed, in which case it is treated as a path.
 
 *** Options
 
 | Short | Long                | Note                                                   |
 |-------+---------------------+--------------------------------------------------------|
 |       | <15>                | <30>                                                   |
-| ~-n~  | ~--dry-run~         | Prints only what will happen                           |
-| ~-r~  | ~--rename~          | Renames the file instead of downloading from /URL/     |
+| ~-n~  | ~--dry-run~         | Prints only what will happen.                          |
+| ~-r~  | ~--rename~          | Renames the file instead of downloading from /URL/.    |
 |       | ~--height~ /NUMBER/ | Selects the best format according to the video height. |
-|       | ~--audio-only~      | Selects only audio formats                             |
-|       | ~--video-only~      | Selects only video formats                             |
+|       | ~--audio-only~      | Selects only audio formats.                            |
+|       | ~--video-only~      | Selects only video formats.                            |
 
 ** ~ost~
    :LOGBOOK:
