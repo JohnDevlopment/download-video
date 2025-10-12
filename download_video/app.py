@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 from typing import Annotated, Optional
 
+import click
 import typer
 from result import Err, Ok
 
@@ -16,6 +17,20 @@ CONTEXT_SETTINGS = {
 }
 app = typer.Typer(context_settings=CONTEXT_SETTINGS)
 _logger: logging.Logger
+
+class MutuallyExclusiveParameters(click.UsageError):
+    def __init__(self, option_names: list[str], ctx: click.Context | None = None) -> None:
+        assert len(option_names) >= 2
+        msg: str
+        match option_names:
+            case [n1, n2]:
+                msg = f"{n1} and {n2} are mutually exclusive"
+
+            case _:
+                *option_names, last_name = option_names
+                msg = f"{', '.join(option_names)}, and {last_name} are mutually exclusive"
+
+        super().__init__(msg, ctx)
 
 @app.callback()
 def main():
@@ -54,6 +69,9 @@ def video(
     # Setup logging system
     setup_logging(APP)
     _logger = logging.getLogger(APP)
+
+    if video_only and audio_only:
+        raise MutuallyExclusiveParameters(["--video-only", "--audio-only"])
 
     register_site_processors()
 
