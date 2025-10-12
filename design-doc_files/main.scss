@@ -9,10 +9,8 @@ body {
     padding: 0 10%;
 }
 
-.note {
+@mixin admonition {
     padding: 1em;
-
-    background-color: transparentize(darkgray, 0.9);
 
     border: {
 	top: {
@@ -26,6 +24,24 @@ body {
     h3 {
 	text-align: center;
     }
+}
+
+.note {
+    @include admonition;
+
+    background-color: transparentize(darkgray, 0.9);
+}
+
+.notice {
+    @include admonition;
+
+    background-color: transparentize(#f0ffff, 0.9);
+}
+
+.warning {
+    @include admonition;
+
+    background-color: transparentize(#ffffe0, 0.9);
 }
 
 th.org-left {

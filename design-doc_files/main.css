@@ -6,13 +6,37 @@ body {
 
 .note {
   padding: 1em;
-  background-color: rgba(169, 169, 169, 0.1);
   border-top-width: 1px;
   border-top-style: solid;
   border-bottom-width: 1px;
   border-bottom-style: solid;
+  background-color: rgba(169, 169, 169, 0.1);
 }
 .note h3 {
+  text-align: center;
+}
+
+.notice {
+  padding: 1em;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  background-color: rgba(240, 255, 255, 0.1);
+}
+.notice h3 {
+  text-align: center;
+}
+
+.warning {
+  padding: 1em;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  background-color: rgba(255, 255, 224, 0.1);
+}
+.warning h3 {
   text-align: center;
 }
 
