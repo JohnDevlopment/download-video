@@ -44,8 +44,17 @@
 		     (kmacro-exec-ring-item
 		      '("fmv" 0 "%d")
 		      arg))))))
+ (python-mode . ((mode . visual-line)))
  (org-mode . ((mode . local-lambda)
 	      (mode . visual-line)
+	      (eval . (progn
+			(unless (fboundp 'commit-ddoc)
+			  (defun commit-ddoc ()
+			    (interactive)
+			    (let ((path (org-get-outline-path t t)))
+			      (with-temp-buffer
+				(insert (s-join "/" (cons "design doc" path)))
+				(kill-region (point-min) (point-max))))))))
 	      (eval . (progn
 			(local-lambda-define-skeleton name
 			  "docstring"
