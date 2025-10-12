@@ -278,3 +278,7 @@ A series of strategies are used to filter the list formats according to the
 criteria given.  The name of each strategy class pretty much says what the
 strategy will be.  Then the highest quality format is chosen.  The barometer for
 a format's quality is its total bitrate, denoted in the ~tbr~ element.
+
+# Local Variables:
+# eval: (org-ext-enable-export-on-save 'org-html-export-to-html "HTML")
+# End:
