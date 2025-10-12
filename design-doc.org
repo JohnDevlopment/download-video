@@ -100,11 +100,12 @@ Downloads audio OSTs from the internet, optionally setting metadata for the down
 
 ** ~config~
    :LOGBOOK:
+   CLOCK: [2025-10-12 Sun 06:30]--[2025-10-12 Sun 06:30] =>  0:00
    CLOCK: [2025-07-10 Thu 18:33]--[2025-07-10 Thu 18:33] =>  0:00
    CLOCK: [2025-07-10 Thu 18:15]--[2025-07-10 Thu 18:17] =>  0:02
    :END:
 
-Set configuration variables.
+Sets configuration variables.
 
 #+begin_example
   Usage:
