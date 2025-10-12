@@ -45,6 +45,7 @@
 		      '("fmv" 0 "%d")
 		      arg))))))
  (org-mode . ((mode . local-lambda)
+	      (mode . visual-line)
 	      (eval . (progn
 			(local-lambda-define-skeleton name
 			  "docstring"
@@ -60,6 +61,4 @@
 			  "\\textheight, keepaspectratio}" n "\\includegraphics{"
 			  (f-relative
 			   (read-file-name "Image: "))
-			  125 n "\\end{adjustbox}" n "\\caption{" str 125 n "\\end{figure}")))
-	      (mode . display-fill-column-indicator)
-	      (mode . auto-fill))))
+			  125 n "\\end{adjustbox}" n "\\caption{" str 125 n "\\end{figure}"))))))
