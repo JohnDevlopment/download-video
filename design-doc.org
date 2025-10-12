@@ -5,6 +5,10 @@
 #+startup: content
 #+todo: TODO(t) FIXME(f) | FIXED(f) DONE(d!)
 
+#+macro: blkstart @@html:<div class="$1">@@
+#+macro: blkhead @@html:<h3>$1</h3>@@
+#+macro: blkend @@html:</div>@@
+
 #+latex_header: \usepackage{adjustbox}
 
 #+html_head: <link rel="stylesheet" href="design-doc_files/main.css">
@@ -198,9 +202,12 @@ A format is chosen from the dictionary via the strategy pattern.  There are
 
 ** Configuration
 
-#+begin_admonition notice
-This part of the project has not been added.
-#+end_admonition
+{{{blkstart(notice)}}}
+{{{blkhead(Notice)}}}
+
+This section of the document is under construction.
+
+{{{blkend}}}
 
 A configuration file controls the exact behavior of {{{name}}}.  There is a
 global section followed by sections for each supported site.  Their respective
