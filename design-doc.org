@@ -71,12 +71,12 @@ The lone positional argument is treated as a string URL unless *-r* is passed, i
 
 ** ~ost~
    :LOGBOOK:
+   CLOCK: [2025-10-12 Sun 06:27]--[2025-10-12 Sun 06:28] =>  0:01
    CLOCK: [2025-07-10 Thu 18:36]--[2025-07-10 Thu 18:38] =>  0:02
    CLOCK: [2025-07-10 Thu 16:59]--[2025-07-10 Thu 17:01] =>  0:02
    :END:
 
-Download audio OSTs from the internet, optionally setting metadata for the
-downloaded files.
+Downloads audio OSTs from the internet, optionally setting metadata for the downloaded files.
 
 *** Options
     :LOGBOOK:
@@ -89,14 +89,14 @@ downloaded files.
     jdv ost [OPTIONS] URL [FILE]
 #+end_example
 
-| Short | Long                | Note                                                 |
-|-------+---------------------+------------------------------------------------------|
-|       | <15>                | <30>                                                 |
-| ~-n~  | ~--dry-run~         | Prints only what will happen                         |
-| ~-t~  | ~--title~ /TITLE/   | Embeds /TITLE/ as the title metadata into the file   |
-| ~-a~  | ~--artist~ /ARTIST/ | Embeds /ARTIST/ as the artist metadata into the file |
-| ~-A~  | ~--album~ /ALBUM/   | Embeds /ALBUM/ as the album metadata into the file   |
-| ~-g~  | ~--genre~ /GENRE/   | Embeds /GENRE/ as the genre metadata into the file   |
+| Short | Long                | Note                                                  |
+|-------+---------------------+-------------------------------------------------------|
+|       | <15>                | <30>                                                  |
+| ~-n~  | ~--dry-run~         | Prints only what will happen.                         |
+| ~-t~  | ~--title~ /TITLE/   | Embeds /TITLE/ as the title metadata into the file.   |
+| ~-a~  | ~--artist~ /ARTIST/ | Embeds /ARTIST/ as the artist metadata into the file. |
+| ~-A~  | ~--album~ /ALBUM/   | Embeds /ALBUM/ as the album metadata into the file.   |
+| ~-g~  | ~--genre~ /GENRE/   | Embeds /GENRE/ as the genre metadata into the file.   |
 
 ** ~config~
    :LOGBOOK:
