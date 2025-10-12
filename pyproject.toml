@@ -27,11 +27,6 @@ ruff = "^0.11.13"
 pandas = "^2.3.0"
 pytest = {version = "^8.4.1", extras = ["pytest-cov", "coverage"]}
 
-[[tool.poetry.source]]
-name = "dev"
-url = "http://localhost:5014/john/dev/+simple"
-priority = "primary"
-
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
