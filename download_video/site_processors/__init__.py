@@ -16,7 +16,7 @@ __all__ = [
 ]
 
 _site_processors: list[SiteProcessor] = []
-_logger = logging.getLogger(__name__)
+_logger: logging.Logger
 
 def match_url(url: str) -> Result[tuple[SiteProcessor, str], str]:
     if not _site_processors:
@@ -35,6 +35,9 @@ def match_url(url: str) -> Result[tuple[SiteProcessor, str], str]:
     return Err("Could not find matching site processor")
 
 def register_site_processors() -> None:
+    global _logger
+    _logger = logging.getLogger(__name__)
+
     global _site_processors
     _logger.debug("Registering site processors")
 
