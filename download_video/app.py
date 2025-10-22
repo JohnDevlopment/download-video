@@ -95,7 +95,7 @@ def video(
             sp, url = tp
 
         case Err(e):
-            raise typer.BadParameter(f"Bad URL: {e}")
+            raise typer.BadParameter(str(e), param_hint="URL_OR_FILE")
 
     info = sp.extract_info(url)
     fmt = sp.select_format(info, selector)
