@@ -25,19 +25,19 @@ REGEX = re.compile(r"(?:https://www\.youtube\.com/watch\?v=|youtu.be/|yt:)([a-zA
 ### Strategies
 
 def audio_video_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
-    ...
+    raise NotImplementedError("audio_video_strategy")
 
 def audio_video_no_height_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
-    ...
+    raise NotImplementedError("audio_video_no_height_strategy")
 
 def audio_only_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
-    ...
+    raise NotImplementedError("audio_only_strategy")
 
 def video_only_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
-    ...
+    raise NotImplementedError("video_only_strategy")
 
 def video_only_no_height_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
-    ...
+    raise NotImplementedError("video_only_no_height_strategy")
 
 _STRATEGIES: dict[int, FormatSelectionStrategy] = {
     (FormatSelectionFlags.AUDIO & FormatSelectionFlags.VIDEO
