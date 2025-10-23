@@ -68,6 +68,9 @@ def select_format(info: SiteInfo, selector: FormatSelector) -> Format:
 def download(url: str, fmt: str) -> None:
     pass
 
+def name():
+    return "youtube"
+
 if __name__ == '__main__':
     def test():
         ic(normalize_url("yt:xxxxxxxxxxx"), normalize_url("youtu.be/xxxxxxxxxxx"))

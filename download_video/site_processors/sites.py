@@ -36,6 +36,9 @@ class SiteProcessor(Protocol):
     def download(self, url: str, fmt: Format):
         ...
 
+    def name(self) -> str:
+        ...
+
 if __name__ == '__main__':
     from . import site_youtube
     temp: SiteProcessor = site_youtube

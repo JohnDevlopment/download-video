@@ -12,6 +12,7 @@ package site_processors {
             Format select_format(SiteInfo info, FormatSelector selector)
             void download(string url, Format format)
             void rename(Path file)
+            string name()
         }
         SiteProcessor -() Format
 
