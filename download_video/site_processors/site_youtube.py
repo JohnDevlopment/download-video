@@ -63,7 +63,7 @@ def _get_strategy(selector: FormatSelector) -> FormatSelectionStrategy:
 
 def select_format(info: SiteInfo, selector: FormatSelector) -> Format:
     st = _get_strategy(selector)
-
+    return st(selector, info)
 
 def download(url: str, fmt: str) -> None:
     pass
