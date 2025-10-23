@@ -49,6 +49,44 @@ def main(
     _logger.info("Logging system activated")
 
 @app.command()
+def ost(
+    url: Annotated[
+        str,
+        typer.Argument(show_default=False, help="The URL to parse.")
+    ],
+    title: Annotated[
+        Optional[str],
+        typer.Option(show_default=False, help="Embed TITLE in the output.")
+    ]=None,
+    artist: Annotated[
+        Optional[str],
+        typer.Option(show_default=False, help="Embed ARTIST in the output.")
+    ]=None,
+    album: Annotated[
+        Optional[str],
+        typer.Option(show_default=False, help="Embed ALBUM in the output.")
+    ]=None,
+    genre: Annotated[
+        Optional[str],
+        typer.Option(show_default=False, help="Embed GENRE in the output.")
+    ]=None
+) -> int:
+    register_site_processors()
+
+    sp = None
+    match match_url(url):
+        case Ok(tp):
+            sp, url = tp
+
+        case Err(e):
+            raise typer.BadParameter(str(e), param_hint="URL")
+
+    info = sp.extract_info(url)
+    fmt = sp.select_format(info, FormatSelector(None, FormatType.AUDIO_ONLY))
+
+    return 0
+
+@app.command()
 def video(
     url_or_file: Annotated[
         str,
