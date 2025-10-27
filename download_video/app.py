@@ -36,7 +36,10 @@ class MutuallyExclusiveParameters(click.UsageError):
 def main(
     loglevel: Annotated[
         LogLevel,
-        typer.Option(show_default=False, help="Set the logging level.", envvar="JDV_LOGLEVEL")
+        typer.Option(show_default=False,
+                     help="Set the logging level.",
+                     envvar="JDV_LOGLEVEL",
+                     metavar="LEVEL")
     ] = LogLevel.INFO
 ):
     """
