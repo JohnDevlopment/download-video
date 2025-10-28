@@ -43,7 +43,12 @@ def main(
     ] = LogLevel.INFO
 ):
     """
-    Video downloader.
+    Jdv is a video downloader based on Yt-Dlp.  To put it a
+    different way, jdv is a simpliifed version of Yt-dlp.  The
+    options listed below are applied globally.
+
+    The --loglevel option accepts one of DEBUG, INFO, WARN,
+    ERROR, or CRITICAL.
     """
     # Setup logging system
     global _logger
