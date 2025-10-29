@@ -32,6 +32,17 @@ if __debug__:
     from icecream import ic
     dprint = cast("DprintFunction", ic)
 
+def is_what(obj: Any, dtype: type, _stype: type | None=None) -> bool:
+ """
+ Assert that OBJ is of type DTYPE.
+
+ This function mainly serves the purpose of static type
+ checking: _STYPE is what the type checker considers to be
+ the actual type of OBJ, and DTYPE is what Python checks at
+ runtime.
+ """
+ return isinstance(obj, dtype)
+
 def only_once[T, **P](func: Callable[P, T]) -> Callable[P, T]:
     _init = False
     _result = None
