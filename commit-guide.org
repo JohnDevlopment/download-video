@@ -1,0 +1,25 @@
+#+title: Commit Guide
+
+* Commit Structure
+
+Structure of a commit:
+
+#+begin_example
+  [TAG] Scope: Message
+
+  [TAG] Message
+#+end_example
+
+** Scopes
+
+- Site processor /x/: ~sites/x~
+
+*** Examples
+
+#+begin_example
+  [UPDATE] Sites/footube: Stuff
+#+end_example
+
+# Local Variables:
+# eval: (org-ext-enable-export-on-save 'org-html-export-to-html "HTML")
+# End:
