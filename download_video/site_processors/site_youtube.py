@@ -40,10 +40,10 @@ def video_only_no_height_strategy(selector: FormatSelector, info: SiteInfo) -> F
     raise NotImplementedError("video_only_no_height_strategy")
 
 _STRATEGIES: dict[int, FormatSelectionStrategy] = {
-    (FormatSelectionFlags.AUDIO & FormatSelectionFlags.VIDEO
-     & FormatSelectionFlags.HEIGHT): audio_video_strategy,
-    (FormatSelectionFlags.AUDIO & FormatSelectionFlags.VIDEO): audio_video_no_height_strategy,
-    (FormatSelectionFlags.VIDEO & FormatSelectionFlags.HEIGHT): video_only_strategy,
+    (FormatSelectionFlags.AUDIO | FormatSelectionFlags.VIDEO
+     | FormatSelectionFlags.HEIGHT): audio_video_strategy,
+    (FormatSelectionFlags.AUDIO | FormatSelectionFlags.VIDEO): audio_video_no_height_strategy,
+    (FormatSelectionFlags.VIDEO | FormatSelectionFlags.HEIGHT): video_only_strategy,
     FormatSelectionFlags.VIDEO: video_only_no_height_strategy,
 }
 
