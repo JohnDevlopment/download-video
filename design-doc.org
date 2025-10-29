@@ -42,6 +42,13 @@ From this point in the document, the following definitions apply:
 - ~ost~ for downloading OSTs
 - ~config~ for setting/getting config variables
 
+*** Global Options
+
+| Short | Long      | Note              |
+|-------+-----------+-------------------|
+|       | <15>      | <30>              |
+|       | ~--debug~ | Enter debug mode. |
+
 ** ~video~
    :LOGBOOK:
    CLOCK: [2025-10-12 Sun 06:21]--[2025-10-12 Sun 06:24] =>  0:03
