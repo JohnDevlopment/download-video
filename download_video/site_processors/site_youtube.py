@@ -3,7 +3,6 @@ from __future__ import annotations
 import re
 from typing import TYPE_CHECKING, Annotated, Optional
 
-from icecream import ic
 from pydantic import BaseModel, Field
 from result import Err, Ok, Result
 
@@ -103,6 +102,7 @@ def name():
     return "youtube"
 
 if __name__ == '__main__':
+    from icecream import ic
     def test():
         ic(normalize_url("yt:xxxxxxxxxxx"), normalize_url("youtu.be/xxxxxxxxxxx"))
 
