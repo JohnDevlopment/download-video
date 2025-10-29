@@ -56,7 +56,7 @@ def normalize_url(url: str, /) -> Result[str, InvalidURLError]:
     return Ok(f"https://{NETLOC}/watch?v={m[1]}")
 
 def extract_info(url: str, /) -> SiteInfo:
-    ...
+    raise NotImplementedError
 
 def _get_strategy(selector: FormatSelector) -> FormatSelectionStrategy:
     return _STRATEGIES[FormatSelectionFlags.from_selector(selector)]
@@ -66,7 +66,7 @@ def select_format(info: SiteInfo, selector: FormatSelector) -> Format:
     return st(selector, info)
 
 def download(url: str, fmt: str) -> None:
-    pass
+    raise NotImplementedError
 
 def name():
     return "youtube"
