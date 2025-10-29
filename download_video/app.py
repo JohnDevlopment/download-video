@@ -34,13 +34,20 @@ class MutuallyExclusiveParameters(click.UsageError):
 
 @app.callback()
 def main(
+    ctx: typer.Context,
     loglevel: Annotated[
         LogLevel,
         typer.Option(show_default=False,
                      help="Set the logging level.",
                      envvar="JDV_LOGLEVEL",
                      metavar="LEVEL")
-    ] = LogLevel.INFO
+    ] = LogLevel.INFO,
+    debug: Annotated[
+        bool,
+        typer.Option("--debug",
+                     show_default=False,
+                     help="Enter debug mode.")
+    ] = False
 ):
     """
     Jdv is a video downloader based on Yt-Dlp.  To put it a
@@ -55,6 +62,8 @@ def main(
     setup_logging(APP, loglevel)
     _logger = logging.getLogger(APP)
     _logger.info("Logging system activated")
+
+    ctx.obj = {'debug': debug}
 
 @app.command()
 def ost(
@@ -96,6 +105,7 @@ def ost(
 
 @app.command()
 def video(
+    ctx: typer.Context,
     url_or_file: Annotated[
         str,
         typer.Argument(show_default=False, help="The URL or file to parse.")
