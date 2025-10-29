@@ -26,15 +26,15 @@ class FormatSelectionFlags(IntFlag):
     def from_selector(cls, selector: FormatSelector) -> int:
         flags = 0
         if selector.height is not None:
-            flags = flags & cls.HEIGHT
+            flags = flags | cls.HEIGHT
 
         ft = selector.format_type
         if ft == FormatType.AUDIO_VIDEO:
-            flags = flags & (cls.AUDIO & cls.VIDEO)
+            flags = flags | (cls.AUDIO | cls.VIDEO)
         elif ft == FormatType.AUDIO_ONLY:
-            flags = flags & cls.AUDIO
+            flags = flags | cls.AUDIO
         elif ft == FormatType.VIDEO_ONLY:
-            flags = flags & cls.VIDEO
+            flags = flags | cls.VIDEO
         else:
             raise RuntimeError("Ran into unreachable code")
 
