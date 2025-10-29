@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import re
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Annotated, Optional
 
 from icecream import ic
+from pydantic import BaseModel, Field
 from result import Err, Ok, Result
 
 from ..site_processors.formats import FormatSelector
@@ -21,6 +22,36 @@ SPECS: list[str] = [
     "yt:XXXXXXXXXXX",
 ]
 REGEX = re.compile(r"(?:https://www\.youtube\.com/watch\?v=|youtu.be/|yt:)([a-zA-Z0-9_-]{11})")
+
+class _Format(BaseModel):
+    # Audio
+    abr: Optional[float] = None
+    acodec: Optional[str] = None
+    asr: Optional[float] = None
+    audio_ext: Optional[str] = None
+
+    # Video
+    width: Optional[int] = None
+    height: Optional[int] = None
+    video_ext: Optional[str] = None
+
+    # General
+    ext: str
+    tbr: Optional[float] = None
+    format_id: str
+    filesize: Optional[int] = None
+    filesize_approx: Optional[int] = None
+    url: str
+
+class _SiteInfo(BaseModel):
+    title: str
+    video_id: Annotated[str, Field(alias="id")]
+    formats: list[_Format]
+    age_limit: int
+    url: Annotated[str, Field(alias="webpage_url")]
+
+    def get_url(self) -> str:
+        return self.url
 
 ### Strategies
 
