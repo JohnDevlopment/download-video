@@ -21,6 +21,9 @@ alias cov="xdg-open htmlcov/index.html; unalias cov; history -s xdg-open htmlcov
 alias pytest-coverage="pytest --cov && coverage html; unalias pytest-coverage; history -s pytest --cov \&\& coverage html"
 alias ddoc-html="librewolf design-doc.html; unalias ddoc-html; history -s librewolf design-doc.html"
 alias ddoc-pdf="librewolf design-doc.pdf; unalias ddoc-pdf; history -s librewolf design-doc.pdf"
+alias commit-guide="librewolf commit-guide.html ; unalias commit-guide; history -s librewolf commit-guide.html "
+
+export JDV_DEBUG
 
 ## usage: __cleanup
 function __cleanup {
@@ -66,6 +69,7 @@ function list-commands {
     cat <<EOF
 Commands:
   * _test
+  * commit-guide (once, modifies history)
   * cov (once, modifies history)
   * create-stub
   * ddoc-html (once, modifies history)
