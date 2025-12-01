@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from typing import TYPE_CHECKING, Annotated, Optional
+from typing import TYPE_CHECKING, Annotated, Optional, cast
 
 from pydantic import BaseModel, Field
 from result import Err, Ok, Result
@@ -60,8 +60,29 @@ def audio_video_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
 def audio_video_no_height_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
     raise NotImplementedError("audio_video_no_height_strategy")
 
-def audio_only_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
-    raise NotImplementedError("audio_only_strategy")
+def audio_only_strategy(_selector: FormatSelector, info: SiteInfo) -> Format:
+    """
+    Select an audio-only format.
+    This works by selecting the format with the highest audio
+    sample rate and highest audio bitrate (`asr` and `abr` respectively).
+    """
+    info2 = cast(_SiteInfo, info)
+
+    def _filter(fmt: _Format) -> bool:
+        """
+        Only allow formats with a defined asr and abr.
+        """
+        return (
+            (fmt.abr is not None)
+            and (fmt.asr is not None)
+        )
+
+    def _key(fmt: _Format) -> float:
+        assert fmt.abr is not None
+        assert fmt.asr is not None
+        return fmt.abr + fmt.asr
+
+    return max(filter(_filter, info2.formats), key=_key).format_id
 
 def video_only_strategy(selector: FormatSelector, info: SiteInfo) -> Format:
     raise NotImplementedError("video_only_strategy")
