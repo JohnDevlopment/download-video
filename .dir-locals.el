@@ -45,6 +45,26 @@
 		      '("fmv" 0 "%d")
 		      arg))))))
  (python-mode . ((mode . visual-line)))
+ (magit-mode . ((mode . local-lambda)
+		(eval . (progn
+			  (local-lambda-define-local-defun commit-add-file nil
+			    (interactive)
+			    (if
+				(cl-ext-progn
+				  (move-beginning-of-line nil)
+				  (looking-at "\\(deleted\\|modified\\|new file\\)[ \t]+\\(.+\\)"))
+				(let*
+				    ((tag
+				      (pcase
+					  (match-string-no-properties 1)
+					("modified" "update")
+					("new file" "add")
+					("deleted" "remove")))
+				     (file
+				      (match-string-no-properties 2)))
+				  (call-interactively #'magit-commit-create)
+				  (run-with-idle-timer 1 nil #'insert
+						       (format "%s %s" tag file)))))))))
  (org-mode . ((mode . local-lambda)
 	      (mode . visual-line)
 	      (eval . (progn
