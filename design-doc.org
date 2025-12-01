@@ -273,6 +273,7 @@ capturing the video ID, then returning a "proper" URL with said video ID.
 
 **** Format Selection
      :LOGBOOK:
+     CLOCK: [2025-10-30 Thu 21:51]--[2025-10-30 Thu 22:01] =>  0:10
      CLOCK: [2025-06-25 Wed 10:11]--[2025-06-25 Wed 10:15] =>  0:04
      CLOCK: [2025-06-21 Sat 16:51]--[2025-06-21 Sat 16:51] =>  0:00
      CLOCK: [2025-06-21 Sat 16:20]--[2025-06-21 Sat 16:45] =>  0:25
@@ -286,15 +287,17 @@ capturing the video ID, then returning a "proper" URL with said video ID.
      CLOCK: [2025-06-18 Wed 19:22]--[2025-06-18 Wed 19:24] =>  0:02
      :END:
 
-Selecting a format is done by trying to get the best (highest quality) video
-which satisfies the criteria outlined in ~FormatSelector~ (see {{{jumpfig(fig:sitesig)}}}).
+Selecting a format is done by trying to get the best (highest quality) video which satisfies the criteria outlined in ~FormatSelector~ (see {{{jumpfig(fig:sitesig)}}}).
 
 {{{clsdiag(Format Selections,format-selection)}}}
 
-A series of strategies are used to filter the list formats according to the
-criteria given.  The name of each strategy class pretty much says what the
-strategy will be.  Then the highest quality format is chosen.  The barometer for
-a format's quality is its total bitrate, denoted in the ~tbr~ element.
++A series of strategies are used to filter the list formats according to the criteria given.+
++The name of each strategy class pretty much says what the strategy will be.+
++Then the highest quality format is chosen.+
++The barometer for a format's quality is its total bitrate, denoted in the ~tbr~ element.+
+
+The audio-only strategy depends on the ~asr~ and ~abr~ fields.
+The strategy looks for the format with the highest values on both fields.
 
 # Local Variables:
 # eval: (org-ext-enable-export-on-save 'org-html-export-to-html "HTML")

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-10-29 Wed 13:31 -->
+<!-- 2025-10-30 Thu 21:58 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Download Video</title>
@@ -248,46 +248,46 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5f2c82d">1. Terminology</a></li>
-<li><a href="#org223fdba">2. User Interface</a>
+<li><a href="#org22fae24">1. Terminology</a></li>
+<li><a href="#org2dd6a6f">2. User Interface</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org082dfd3">2.0.1. Global Options</a></li>
+<li><a href="#org32d4c74">2.0.1. Global Options</a></li>
 </ul>
 </li>
-<li><a href="#orgd5596cb">2.1. <code>video</code></a>
+<li><a href="#org11120db">2.1. <code>video</code></a>
 <ul>
-<li><a href="#org6d63234">2.1.1. Options</a></li>
+<li><a href="#org43c7308">2.1.1. Options</a></li>
 </ul>
 </li>
-<li><a href="#org4a15716">2.2. <code>ost</code></a>
+<li><a href="#org82f750d">2.2. <code>ost</code></a>
 <ul>
-<li><a href="#org00adbb3">2.2.1. Options</a></li>
+<li><a href="#org3c7dd71">2.2.1. Options</a></li>
 </ul>
 </li>
-<li><a href="#org42c0065">2.3. <code>config</code></a>
+<li><a href="#org6e6fb5b">2.3. <code>config</code></a>
 <ul>
-<li><a href="#orgab41b42">2.3.1. Variables</a></li>
+<li><a href="#org72f7858">2.3.1. Variables</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org4b6311f">3. Technical Specification</a>
+<li><a href="#orgb6b4aaa">3. Technical Specification</a>
 <ul>
-<li><a href="#org30786a5">3.1. Dependencies</a></li>
-<li><a href="#org71e810c">3.2. Overview</a>
+<li><a href="#orgc00de32">3.1. Dependencies</a></li>
+<li><a href="#orgfd17271">3.2. Overview</a>
 <ul>
-<li><a href="#org4718460">3.2.1. Getting Site Processor</a></li>
-<li><a href="#org2845747">3.2.2. URL Normalization</a></li>
-<li><a href="#orga294100">3.2.3. Extracting Info Dictionary</a></li>
-<li><a href="#orgec5b06f">3.2.4. Selecting A Format</a></li>
+<li><a href="#org1544412">3.2.1. Getting Site Processor</a></li>
+<li><a href="#org31b5ab6">3.2.2. URL Normalization</a></li>
+<li><a href="#orgdef33d9">3.2.3. Extracting Info Dictionary</a></li>
+<li><a href="#orgfe1286e">3.2.4. Selecting A Format</a></li>
 </ul>
 </li>
-<li><a href="#orgde627cc">3.3. Configuration</a></li>
-<li><a href="#org9ea461c">3.4. Supported Sites</a>
+<li><a href="#org6e700dd">3.3. Configuration</a></li>
+<li><a href="#org3379edf">3.4. Supported Sites</a>
 <ul>
-<li><a href="#org969b961">3.4.1. Youtube</a></li>
+<li><a href="#org7e6c746">3.4.1. Youtube</a></li>
 </ul>
 </li>
 </ul>
@@ -303,8 +303,8 @@ downloading videos and OSTs.
 
 </div>
 
-<div id="outline-container-org5f2c82d" class="outline-2">
-<h2 id="org5f2c82d"><span class="section-number-2">1</span> Terminology</h2>
+<div id="outline-container-org22fae24" class="outline-2">
+<h2 id="org22fae24"><span class="section-number-2">1</span> Terminology</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 From this point in the document, the following definitions apply:
@@ -318,8 +318,8 @@ of the <code>SiteProcessor</code> interface.</dd>
 </div>
 </div>
 
-<div id="outline-container-org223fdba" class="outline-2">
-<h2 id="org223fdba"><span class="section-number-2">2</span> User Interface</h2>
+<div id="outline-container-org2dd6a6f" class="outline-2">
+<h2 id="org2dd6a6f"><span class="section-number-2">2</span> User Interface</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <code>jdv</code> has three commands:
@@ -331,8 +331,8 @@ of the <code>SiteProcessor</code> interface.</dd>
 </ul>
 </div>
 
-<div id="outline-container-org082dfd3" class="outline-4">
-<h4 id="org082dfd3"><span class="section-number-4">2.0.1</span> Global Options</h4>
+<div id="outline-container-org32d4c74" class="outline-4">
+<h4 id="org32d4c74"><span class="section-number-4">2.0.1</span> Global Options</h4>
 <div class="outline-text-4" id="text-2-0-1">
 <table>
 
@@ -362,8 +362,8 @@ of the <code>SiteProcessor</code> interface.</dd>
 </div>
 </div>
 
-<div id="outline-container-orgd5596cb" class="outline-3">
-<h3 id="orgd5596cb"><span class="section-number-3">2.1</span> <code>video</code></h3>
+<div id="outline-container-org11120db" class="outline-3">
+<h3 id="org11120db"><span class="section-number-3">2.1</span> <code>video</code></h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Downloads videos from the internet using several criteria to filter formats.
@@ -382,8 +382,8 @@ The lone positional argument is treated as a string URL unless <b>-r</b> is pass
 </p>
 </div>
 
-<div id="outline-container-org6d63234" class="outline-4">
-<h4 id="org6d63234"><span class="section-number-4">2.1.1</span> Options</h4>
+<div id="outline-container-org43c7308" class="outline-4">
+<h4 id="org43c7308"><span class="section-number-4">2.1.1</span> Options</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <table>
 
@@ -438,16 +438,16 @@ The lone positional argument is treated as a string URL unless <b>-r</b> is pass
 </div>
 </div>
 
-<div id="outline-container-org4a15716" class="outline-3">
-<h3 id="org4a15716"><span class="section-number-3">2.2</span> <code>ost</code></h3>
+<div id="outline-container-org82f750d" class="outline-3">
+<h3 id="org82f750d"><span class="section-number-3">2.2</span> <code>ost</code></h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Downloads audio OSTs from the internet, optionally setting metadata for the downloaded files.
 </p>
 </div>
 
-<div id="outline-container-org00adbb3" class="outline-4">
-<h4 id="org00adbb3"><span class="section-number-4">2.2.1</span> Options</h4>
+<div id="outline-container-org3c7dd71" class="outline-4">
+<h4 id="org3c7dd71"><span class="section-number-4">2.2.1</span> Options</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <pre class="example">
 Usage:
@@ -507,8 +507,8 @@ Usage:
 </div>
 </div>
 
-<div id="outline-container-org42c0065" class="outline-3">
-<h3 id="org42c0065"><span class="section-number-3">2.3</span> <code>config</code></h3>
+<div id="outline-container-org6e6fb5b" class="outline-3">
+<h3 id="org6e6fb5b"><span class="section-number-3">2.3</span> <code>config</code></h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Sets configuration variables.
@@ -520,8 +520,8 @@ Usage:
 </pre>
 </div>
 
-<div id="outline-container-orgab41b42" class="outline-4">
-<h4 id="orgab41b42"><span class="section-number-4">2.3.1</span> Variables</h4>
+<div id="outline-container-org72f7858" class="outline-4">
+<h4 id="org72f7858"><span class="section-number-4">2.3.1</span> Variables</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 Under construction.
@@ -531,12 +531,12 @@ Under construction.
 </div>
 </div>
 
-<div id="outline-container-org4b6311f" class="outline-2">
-<h2 id="org4b6311f"><span class="section-number-2">3</span> Technical Specification</h2>
+<div id="outline-container-orgb6b4aaa" class="outline-2">
+<h2 id="orgb6b4aaa"><span class="section-number-2">3</span> Technical Specification</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org30786a5" class="outline-3">
-<h3 id="org30786a5"><span class="section-number-3">3.1</span> Dependencies</h3>
+<div id="outline-container-orgc00de32" class="outline-3">
+<h3 id="orgc00de32"><span class="section-number-3">3.1</span> Dependencies</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Download Video uses:
@@ -556,8 +556,8 @@ Standard library:
 </div>
 </div>
 
-<div id="outline-container-org71e810c" class="outline-3">
-<h3 id="org71e810c"><span class="section-number-3">3.2</span> Overview</h3>
+<div id="outline-container-orgfd17271" class="outline-3">
+<h3 id="orgfd17271"><span class="section-number-3">3.2</span> Overview</h3>
 <div class="outline-text-3" id="text-3-2">
 
 <figure>
@@ -567,8 +567,8 @@ Standard library:
 </figure>
 </div>
 
-<div id="outline-container-org4718460" class="outline-4">
-<h4 id="org4718460"><span class="section-number-4">3.2.1</span> Getting Site Processor</h4>
+<div id="outline-container-org1544412" class="outline-4">
+<h4 id="org1544412"><span class="section-number-4">3.2.1</span> Getting Site Processor</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 The URL is matched with a list of site processors.
@@ -576,7 +576,7 @@ A site processor in this context is defined as a Python module (acting as a sing
 </p>
 
 
-<figure id="org2a47f5c">
+<figure id="org48fa070">
 <img src="design-doc_files/cls_site-singleton.png" alt="cls_site-singleton.png">
 
 <figcaption><span class="figure-number">Figure 2: </span>Site Processor</figcaption>
@@ -584,22 +584,22 @@ A site processor in this context is defined as a Python module (acting as a sing
 </div>
 </div>
 
-<div id="outline-container-org2845747" class="outline-4">
-<h4 id="org2845747"><span class="section-number-4">3.2.2</span> URL Normalization</h4>
+<div id="outline-container-org31b5ab6" class="outline-4">
+<h4 id="org31b5ab6"><span class="section-number-4">3.2.2</span> URL Normalization</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 The site processor has a function for normalizing URLs, which is done before
 extracting the info dictionary.  The exact method will change depending on the
-site processor (see <a href="#org9ea461c">Supported Sites</a>).
+site processor (see <a href="#org3379edf">Supported Sites</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga294100" class="outline-4">
-<h4 id="orga294100"><span class="section-number-4">3.2.3</span> Extracting Info Dictionary</h4>
+<div id="outline-container-orgdef33d9" class="outline-4">
+<h4 id="orgdef33d9"><span class="section-number-4">3.2.3</span> Extracting Info Dictionary</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
-Refer to Figure Figure <a href="#org2a47f5c">2</a>.
+Refer to Figure Figure <a href="#org48fa070">2</a>.
 </p>
 
 <p>
@@ -611,8 +611,8 @@ the dictionary are made visible via getter methods.
 </div>
 </div>
 
-<div id="outline-container-orgec5b06f" class="outline-4">
-<h4 id="orgec5b06f"><span class="section-number-4">3.2.4</span> Selecting A Format</h4>
+<div id="outline-container-orgfe1286e" class="outline-4">
+<h4 id="orgfe1286e"><span class="section-number-4">3.2.4</span> Selecting A Format</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <p>
 The abstract method <code>select_format</code> selects a suitable format based on the
@@ -635,8 +635,8 @@ A format is chosen from the dictionary via the strategy pattern.  There are
 </div>
 </div>
 
-<div id="outline-container-orgde627cc" class="outline-3">
-<h3 id="orgde627cc"><span class="section-number-3">3.3</span> Configuration</h3>
+<div id="outline-container-org6e700dd" class="outline-3">
+<h3 id="org6e700dd"><span class="section-number-3">3.3</span> Configuration</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <div class="notice">
@@ -654,7 +654,7 @@ This section of the document is under construction.
 <p>
 A configuration file controls the exact behavior of Download Video.  There is a
 global section followed by sections for each supported site.  Their respective
-values are explained under <a href="#org9ea461c">Supported Sites</a>.
+values are explained under <a href="#org3379edf">Supported Sites</a>.
 </p>
 
 <p>
@@ -664,12 +664,12 @@ standard config directory, a Toml file is used called <code>config.toml</code>.
 </div>
 </div>
 
-<div id="outline-container-org9ea461c" class="outline-3">
-<h3 id="org9ea461c"><span class="section-number-3">3.4</span> Supported Sites</h3>
+<div id="outline-container-org3379edf" class="outline-3">
+<h3 id="org3379edf"><span class="section-number-3">3.4</span> Supported Sites</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-org969b961" class="outline-4">
-<h4 id="org969b961"><span class="section-number-4">3.4.1</span> Youtube</h4>
+<div id="outline-container-org7e6c746" class="outline-4">
+<h4 id="org7e6c746"><span class="section-number-4">3.4.1</span> Youtube</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 <div class="notice">
@@ -708,7 +708,7 @@ The info dictionary returned by Youtube has this structure:
 </div>
 
 <ol class="org-ol">
-<li><a id="orgaf5753e"></a>URL Normalization<br>
+<li><a id="org7091d8d"></a>URL Normalization<br>
 <div class="outline-text-5" id="text-3-4-1-1">
 <p>
 URL normalization is done by matching a URL with a regular expression and
@@ -717,11 +717,10 @@ capturing the video ID, then returning a "proper" URL with said video ID.
 </div>
 </li>
 
-<li><a id="org692049b"></a>Format Selection<br>
+<li><a id="org09470ff"></a>Format Selection<br>
 <div class="outline-text-5" id="text-3-4-1-2">
 <p>
-Selecting a format is done by trying to get the best (highest quality) video
-which satisfies the criteria outlined in <code>FormatSelector</code> (see Figure <a href="#org2a47f5c">2</a>).
+Selecting a format is done by trying to get the best (highest quality) video which satisfies the criteria outlined in <code>FormatSelector</code> (see Figure <a href="#org48fa070">2</a>).
 </p>
 
 
@@ -732,10 +731,15 @@ which satisfies the criteria outlined in <code>FormatSelector</code> (see Figure
 </figure>
 
 <p>
-A series of strategies are used to filter the list formats according to the
-criteria given.  The name of each strategy class pretty much says what the
-strategy will be.  Then the highest quality format is chosen.  The barometer for
-a format's quality is its total bitrate, denoted in the <code>tbr</code> element.
+<del>A series of strategies are used to filter the list formats according to the criteria given.</del>
+<del>The name of each strategy class pretty much says what the strategy will be.</del>
+<del>Then the highest quality format is chosen.</del>
+<del>The barometer for a format's quality is its total bitrate, denoted in the <code>tbr</code> element.</del>
+</p>
+
+<p>
+The audio-only strategy depends on the <code>asr</code> and <code>abr</code> fields.
+The strategy looks for the format with the highest values on both fields.
 </p>
 </div>
 </li>
@@ -746,7 +750,7 @@ a format's quality is its total bitrate, denoted in the <code>tbr</code> element
 </div>
 <footer id="postamble" class="status">
 <p class="author">Author: John Russell</p>
-<p class="date">Created: 2025-10-29 Wed 13:31</p>
+<p class="date">Created: 2025-10-30 Thu 21:58</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </footer>
 </body>
