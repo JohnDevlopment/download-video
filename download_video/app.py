@@ -142,7 +142,7 @@ def video(
     selector = FormatSelector(height, temp)
 
     if rename:
-        return 0
+        raise NotImplementedError
 
     url = url_or_file
     sp = None
