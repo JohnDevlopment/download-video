@@ -1,39 +1,30 @@
 ;;; Directory Local Variables
 ;;; For more information see (info "(emacs) Directory Variables")
 
-((nil . ((eval . (unless
-		     (and
-		      (fboundp 'mc-magitupdate)
-		      (key-binding
-		       (kbd "C-x C-k 2")))
-		   (defun mc-magitupdate
-		       (&optional arg)
-		     "Keyboard macro."
-		     (interactive "p")
-		     (kmacro-exec-ring-item
-		      '("oqog" 0 "%d")
-		      arg))
-		   (function-put 'mc-magitupdate 'kmacro t)
-		   (global-set-key
-		    (kbd "C-x C-k 2")
-		    #'mc-magitupdate)))
-	 (eval . (unless
-		     (and
-		      (fboundp 'mc-commitdlg)
-		      (key-binding
-		       (kbd "C-x C-k 1")))
-		   (defun mc-commitdlg
-		       (&optional arg)
-		     "Keyboard macro."
-		     (interactive "p")
-		     (kmacro-exec-ring-item
-		      '([24 111 3 99 99 100 tab tab]
-			0 "%d")
-		      arg))
-		   (function-put 'mc-commitdlg 'kmacro t)
-		   (global-set-key
-		    (kbd "C-x C-k 1")
-		    #'mc-commitdlg)))
+((nil . ((eval . (progn
+		   (unless (and (fboundp 'mc-commitdlg)
+				(key-binding (kbd "C-x C-k 1")))
+		     (defun mc-commitdlg (&optional arg)
+		       "Keyboard macro."
+		       (interactive "p")
+		       (kmacro-exec-ring-item '([24 111 3 99 99 100 tab tab] 0 "%d") arg))
+		     (function-put 'mc-commitdlg 'kmacro t)
+		     (global-set-key (kbd "C-x C-k 1") #'mc-commitdlg))
+		   (unless (and (fboundp 'mc-magitupdate)
+				(key-binding (kbd "C-x C-k 2")))
+		     (defun mc-magitupdate (&optional arg)
+		       "Keyboard macro."
+		       (interactive "p")
+		       (kmacro-exec-ring-item '("oqog" 0 "%d") arg))
+		     (function-put 'mc-magitupdate 'kmacro t)
+		     (global-set-key (kbd "C-x C-k 2") #'mc-magitupdate))
+		   (unless (and (fboundp 'mc-magitupdate2)
+				(key-binding (kbd "C-x C-k 3")))
+		     (defun mc-magitupdate2 (&optional arg)
+		       "Keyboard macro."
+		       (interactive "p")
+		       (kmacro-exec-ring-item '("goq" 0 "%d") arg))
+		     (global-set-key (kbd "C-x C-k 3") #'mc-magitupdate2))))
 	 (org-special-block-add-html-extra . nil)
 	 (eval . (unless
 		     (fboundp 'mc-foldview)
