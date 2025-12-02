@@ -14,6 +14,7 @@ dependencies = [
     "result (>=0.17.0,<0.18.0)",
     "typer (>=0.16.0,<0.17.0)",
     "click-option-group (>=0.5.7,<0.6.0)",
+    "platformdirs (>=4.5.0,<5.0.0)",
 ]
 
 [project.scripts]
