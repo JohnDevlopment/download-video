@@ -16,7 +16,7 @@ dependencies = [
     "click-option-group (>=0.5.7,<0.6.0)",
 ]
 
-[tool.poetry.scripts]
+[project.scripts]
 jdv = "download_video.app:app"
 
 [tool.poetry.group.dev.dependencies]
